@@ -1,9 +1,9 @@
 doctype
 html
-  head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
-    link(rel='stylesheet', href='/stylesheets/style.css')
+head
+  title= title
+  link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+  link(rel='stylesheet', href='/stylesheets/style.css')
 body
   .container-narrow
     .masthead
@@ -17,6 +17,7 @@ body
     h3.muted BitFaucet
     hr
     div.content
-      block content
-        div.page-header
-          small Welcome to BitFaucet
+      .container-narrow
+        block content
+          div.page-header
+            small Welcome to BitFaucet

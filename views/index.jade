@@ -1,8 +1,20 @@
 extends layout
 
 block content
-  div.page-header
-    h1 Welcome to BitFaucet!
-    p.lead We provide bitcoin from testnet for testing purposes.
-  div.row-fluid
-    a.btn.btn-large.btn-success(href="#myModal", role="button", data-toggle="modal") Get Bit
+ div.page-header
+  h1 Welcome to BitFaucet!
+   p.lead We provide bitcoin from testnet for testing purposes.
+ div.jumbotron
+  form(method="POST", action="/pour")
+   input(type="hidden", name="_method", value="POST")
+   p.lead Wallet Address&nbsp
+    input.form-control(type="text", name="wallet_address")
+   p.lead Ammount&nbsp
+    input.form-control(type="number", name="pour_ammount")
+   p
+    a.btn.btn-large.btn-success(type="submit") Get Bit
+ hr
+ .footer
+  p Philip Hutchins 2014
+  script(class="cssdeck", src="/javascripts/jquery.min.js")
+  script(src="/javascripts/bootstrap.min.js ")

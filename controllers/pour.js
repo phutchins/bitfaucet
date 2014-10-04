@@ -2,12 +2,6 @@ var mongoose = require('mongoose');
 var Pour = require('../models/pour');
 
 module.exports.controller = function(app) {
-  app.get('/', function(req, res) {
-      Pour.find( function(err, pours) {
-        res.render('index', {pours: pours});
-      });
-  });
-
   app.post('/pour', function(req, res) {
     // TODO: add constraint for pour frequency and amount
     console.log("User with IP " + req.connection.remoteAddress + " has poured " + req.body.pour_ammount + " to address " + req.body.wallet_address);
@@ -26,3 +20,5 @@ module.exports.controller = function(app) {
     });
   });
 }
+
+
