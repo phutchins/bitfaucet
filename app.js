@@ -15,6 +15,9 @@ var app = express();
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 
+var bitcoin = require('bitcoin');
+var btcClient = new bitcoin.Client(config.bitcoin);
+
 db.on('error', console.error);
 db.once('open', function() {
   // create schemas and models here? maybe not.

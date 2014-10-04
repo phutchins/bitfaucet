@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "bitcoin": "^2.2.0",
     "body-parser": "~1.6.6",
     "bootstrap": "~3.2.0",
     "bson": "^0.2.15",

@@ -5,6 +5,13 @@ var config = {
     mongo: {
       host: 'localhost',
       port: 27017
+    },
+    bitcoin: {
+      host: '127.0.0.1',
+      port: 8332,
+      user: 'phutchins',
+      pass: 'iamsatoshi',
+      timeout: 30000
     }
   },
   staging: {

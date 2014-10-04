@@ -4,17 +4,23 @@ block content
  div.page-header
   h1 Welcome to BitFaucet!
    p.lead We provide bitcoin from testnet for testing purposes.
+   p
+   p.lead Wallet Balance:
+    #{balance}
  div.jumbotron
   form(method="POST", action="/pour")
    input(type="hidden", name="_method", value="POST")
    p.lead Wallet Address&nbsp
     input.form-control(type="text", name="wallet_address")
    p.lead Ammount&nbsp
-    input.form-control(type="number", name="pour_ammount")
+    input.form-control(type="decimal", name="pour_ammount")
    p
-    a.btn.btn-large.btn-success(type="submit") Get Bit
+    button.btn.btn-large.btn-success(type="submit") Get Bit
+   p
+    if message
+     #{message}
  hr
  .footer
   p Philip Hutchins 2014
-  script(class="cssdeck", src="/javascripts/jquery.min.js")
-  script(src="/javascripts/bootstrap.min.js ")
+  script(class="cssdeck", src="/javascripts/lib/bootstrap/jquery.min.js")
+  script(src="/javascripts/lib/bootstrap/bootstrap.min.js ")
