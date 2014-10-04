@@ -1,7 +1,22 @@
-doctype html
+doctype
 html
   head
     title= title
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body
-    block content
+body
+  .container-narrow
+    .masthead
+      ul.nav.nav-pills.pull-right
+        li.active
+          a(href='#') Home
+        li
+          a(href='#') About
+        li
+          a(href='#') Contact
+    h3.muted BitFaucet
+    hr
+    div.content
+      block content
+        div.page-header
+          small Welcome to BitFaucet

@@ -1,6 +1,8 @@
 extends layout
 
 block content
-  div.container
-    h1= title
-    p Welcome to #{title}
+  div.page-header
+    h1 Welcome to BitFaucet!
+    p.lead We provide bitcoin from testnet for testing purposes.
+  div.row-fluid
+    a.btn.btn-large.btn-success(href="#myModal", role="button", data-toggle="modal") Get Bit
