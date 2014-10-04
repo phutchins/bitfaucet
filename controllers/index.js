@@ -12,7 +12,7 @@ module.exports.controller = function(app) {
       console.log('Balance:', btcBalance);
       btcBalance = parseFloat(balance);
       Pour.find( function(err, pours) {
-        res.render('index', {pours: pours, balance: btcBalance, pourmessage: "no message"});
+        res.render('index', {pours: pours, balance: btcBalance, message: "no message"});
       });
     });
   });
@@ -24,6 +24,7 @@ module.exports.controller = function(app) {
       if (err) return console.error(err);
       var pour = new Pour({
         ip: req.connection.remoteAddress,
+        wallet_address: req.body.wallet_address,
         pour_ammount: req.body.pour_ammount,
         comment: req.param.comment
       });
@@ -32,7 +33,7 @@ module.exports.controller = function(app) {
         //console.dir(item);
         Pour.find( function(err, pours) {
           pourMessage = 'Successfully poured ' + req.body.pour_ammount + ' to ' + req.body.wallet_address;
-          res.render('index', {pours: pours, balance: btcBalance, pourmessage: pourMessage});
+          res.render('index', {pours: pours, balance: btcBalance, message: "message here"});
         });
       });
     });
