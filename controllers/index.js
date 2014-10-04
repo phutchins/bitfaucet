@@ -13,7 +13,7 @@ module.exports.controller = function(app) {
       btcBalance = parseFloat(balance);
     });
     Pour.find( function(err, pours) {
-      res.render('index', {pours: pours, balance: btcBalance});
+      res.render('index', {pours: pours, balance: btcBalance, pourmessage: "no message"});
     });
   });
 
@@ -22,7 +22,6 @@ module.exports.controller = function(app) {
     console.log("User with IP " + req.connection.remoteAddress + " has poured " + req.body.pour_ammount + " to address " + req.body.wallet_address);
     btcClient.sendToAddress(req.body.wallet_address, parseFloat(req.body.pour_ammount), function(err, txid) {
       if (err) return console.error(err);
-      res.render('index', {message: 'Successfully poured ' + req.body.pour_ammount + ' to ' + req.body.wallet_address, balance: btcBalance});
     });
     var pour = new Pour({
       ip: req.connection.remoteAddress,
@@ -31,9 +30,10 @@ module.exports.controller = function(app) {
     });
     pour.save(function(err, item) {
       if (err) return console.error(err);
-      console.dir(item);
+      //console.dir(item);
       Pour.find( function(err, pours) {
-        res.render('index', {pours: pours, balance: btcBalance, message: 'Successfully poured ' + req.body.pour_ammount + ' to ' + req.body.wallet_address});
+        pourMessage = 'Successfully poured ' + req.body.pour_ammount + ' to ' + req.body.wallet_address;
+        res.render('index', {pours: pours, balance: btcBalance, pourmessage: pourMessage});
       });
     });
   });

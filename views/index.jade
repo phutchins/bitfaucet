@@ -7,6 +7,8 @@ block content
    p
    p.lead Wallet Balance:
     #{balance}
+   p.lead Message:
+    #{pourmessage}
  div.jumbotron
   form(method="POST", action="/pour")
    input(type="hidden", name="_method", value="POST")
@@ -17,8 +19,6 @@ block content
    p
     button.btn.btn-large.btn-success(type="submit") Get Bit
    p
-    if message
-     #{message}
  hr
  .footer
   p Philip Hutchins 2014
