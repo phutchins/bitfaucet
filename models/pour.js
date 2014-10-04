@@ -5,7 +5,7 @@ var
     ip: { type: String },
     pour_date: { type: Date, default: Date.now },
     pour_ammount: { type: Number, default: 0 },
-    comment: { type: String }]
+    comment: { type: String }
   }),
   Pour = mongoose.model('Pour', pourSchema);
 

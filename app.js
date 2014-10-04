@@ -3,10 +3,12 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var lessMiddleware = require('less-middleware');
 var bodyParser = require('body-parser');
 var http = require('http');
 var fs = require('fs');
 var config = require(__dirname + '/config')();
+var bson = require('bson');
 
 var app = express();
 
@@ -26,11 +28,38 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
+//app.configure(function() {
+  var bootstrapPath = path.join(__dirname, 'node_modules', 'bootstrap');
+  app.use(logger('dev'));
+  app.use(bodyParser.json());
+  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(lessMiddleware(path.join(__dirname, 'public', 'stylesheets'), {
+    dest: path.join(__dirname, 'public', 'stylesheets'),
+    parser: {
+      paths: [path.join(bootstrapPath, 'less')],
+    }
+  }));
+  app.use(express['static'](path.join(__dirname, 'public')));
+//});
+//app.use(less(path.join(__dirname, 'public/stylesheets', 'less'), {
+//  paths  : [bootstrapPath],
+//  dest   : path.join(__dirname, 'public', 'stylesheets'),
+//  preprocess: {
+//    path: function(pathname, req) {
+//      return pathname.replace('/stylesheets/', '/');
+//    }
+//  },
+//  debug: true
+//}));
+
+//app.use(lessMiddleware(path.join(__dirname, 'public'), {
+//  parser: {
+//    paths: [TWITTER_BOOTSTRAP_PATH]
+//  }
+//}));
+//app.use(express.static(path.join(__dirname, 'public')));
 
 //app.use('/', routes);
 //app.use('/users', users);
