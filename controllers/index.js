@@ -9,8 +9,8 @@ module.exports.controller = function(app) {
     btcBalance = parseFloat('0.00000000')
     btcClient.getBalance('*', 1, function(err, balance, resHeaders) {
       if (err) return console.log(err);
-      console.log('Balance:', btcBalance);
       btcBalance = parseFloat(balance);
+      console.log('Balance:', btcBalance);
       Pour.find( function(err, pours) {
         res.render('index', {pours: pours, balance: btcBalance, message: "no message"});
       });
