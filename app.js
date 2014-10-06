@@ -33,18 +33,19 @@ app.set('view engine', 'jade');
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 
 //app.configure(function() {
-  var bootstrapPath = path.join(__dirname, 'node_modules', 'bootstrap');
-  app.use(logger('dev'));
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: false }));
-  app.use(cookieParser());
-  app.use(lessMiddleware(path.join(__dirname, 'public', 'stylesheets'), {
-    dest: path.join(__dirname, 'public', 'stylesheets'),
-    parser: {
-      paths: [path.join(bootstrapPath, 'less')],
-    }
-  }));
-  app.use(express['static'](path.join(__dirname, 'public')));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+var bootstrapPath = path.join(__dirname, 'node_modules', 'bootstrap');
+app.use(lessMiddleware(path.join(__dirname, 'public'), {
+  dest: path.join(__dirname, 'public'),
+  parser: {
+    paths: [path.join(bootstrapPath, 'less')],
+  }
+}));
+app.use(express['static'](path.join(__dirname, 'public')));
 //});
 //app.use(less(path.join(__dirname, 'public/stylesheets', 'less'), {
 //  paths  : [bootstrapPath],
