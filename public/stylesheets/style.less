@@ -2,9 +2,29 @@
 @import "bootstrap.less";
 // Padding for fixed-navbar
 body {
-  padding-top: 60px;
+  padding-top: 5px;
   padding-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
 }
-@import "responsive.less";
+.container-narrow {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.jumbotron {
+  margin: 60px 0;
+  text-align: center;
+  h1 {
+    font-size: 72px;
+    line-height: 1;
+  }
+  .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+  }
+}
+
+@import "responsive-embed.less";
 @iconSpritePath: "/images/bootstrap/glyphicons-halflings.png";
 @iconWhiteSpritePath:     "/images/bootstrap/glyphicons-halflings-white.png";
