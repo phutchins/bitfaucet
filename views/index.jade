@@ -3,12 +3,15 @@ extends layout
 block content
  div.page-header
   h1 Welcome to BitFaucet!
-   p.lead We provide bitcoin from testnet for testing purposes.
-   p
-   p.lead Wallet Balance:
-    #{balance}
-   p.lead Message:
-    #{message}
+  p.lead We provide bitcoin from testnet for testing purposes.
+ p To give back to the faucet, please send your coins to the following address
+ p.bg-info= faucet_address
+ h2 Wallet Balance:&nbsp
+  = balance
+ if message
+  p.bg-success= message
+ else
+  p Enter your TestNet wallet address and click 'Get Bit' to get some bitcoin
  div.jumbotron
   form(method="POST", action="/pour")
    input(type="hidden", name="_method", value="POST")
@@ -22,5 +25,4 @@ block content
  hr
  .footer
   p Philip Hutchins 2014
-  script(class="cssdeck", src="/javascripts/lib/bootstrap/jquery.min.js")
   script(src="/javascripts/lib/bootstrap/bootstrap.min.js ")

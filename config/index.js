@@ -12,7 +12,8 @@ var config = {
       user: 'phutchins',
       pass: 'iamsatoshi',
       timeout: 30000
-    }
+    },
+    faucet_address: 'miWQvs1rZFgBjXsP7nfyYA7tBvG6dHgV9d'
   },
   staging: {
     mode: 'staging',

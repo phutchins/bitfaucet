@@ -1,24 +1,23 @@
-doctype
+doctype html
 html
-head
-  title= title
-  link(rel='stylesheet', href='/stylesheets/bootstrap.css')
-  link(rel='stylesheet', href='/stylesheets/style.css')
-body
-  .container-narrow
-    .masthead
-      ul.nav.nav-pills.pull-right
-        li.active
-          a(href='#') Home
-        li
-          a(href='#') About
-        li
-          a(href='#') Contact
-    h3.muted BitFaucet
-    hr
-    .container-narrow
-    div.content
-      .container-narrow
-        block content
-          div.page-header
-            small Welcome to BitFaucet
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.css')
+  body
+    .container
+      .navbar
+        ul.nav.nav-pills.pull-right
+          li.active
+            a(href='#') Home
+          li
+            a(href='#') About
+          li
+            a(href='#') Contact
+      h3.muted BitFaucet
+      hr
+      div.content
+        .container-narrow
+          block content
+            div.page-header
+              small Welcome to BitFaucet

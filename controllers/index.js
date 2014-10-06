@@ -12,7 +12,7 @@ module.exports.controller = function(app) {
       btcBalance = parseFloat(balance);
       console.log('Balance:', btcBalance);
       Pour.find( function(err, pours) {
-        res.render('index', {pours: pours, balance: btcBalance, message: "no message"});
+        res.render('index', {pours: pours, balance: btcBalance, faucet_address: config.faucet_address});
       });
     });
   });
@@ -33,7 +33,7 @@ module.exports.controller = function(app) {
         //console.dir(item);
         Pour.find( function(err, pours) {
           pourMessage = 'Successfully poured ' + req.body.pour_ammount + ' to ' + req.body.wallet_address;
-          res.render('index', {pours: pours, balance: btcBalance, message: "message here"});
+          res.render('index', {pours: pours, balance: btcBalance, message: pourMessage, faucet_address: config.faucet_address});
         });
       });
     });
