@@ -5,13 +5,13 @@ block content
   h1 Welcome to BitFaucet!
   p.lead We provide bitcoin from testnet for testing purposes.
  p To give back to the faucet, please send your coins to the following address
- img(src='/images/wallet_qr.svg')
+ //-img(src='/images/wallet_qr.svg')
  p
  p.bg-info.greybox= faucet_address
  h2 Wallet Balance:&nbsp
   = balance
  if message
-  p.bg-success= message
+  p.bg-success.greybox= message
  else
   p Enter your TestNet wallet address and click 'Get Bit' to get some bitcoin
  div.jumbotron
