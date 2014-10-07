@@ -9,8 +9,8 @@ var config = {
     bitcoin: {
       host: '127.0.0.1',
       port: 8332,
-      user: 'phutchins',
-      pass: 'iamsatoshi',
+      user: 'default',
+      pass: 'default',
       timeout: 30000
     },
     faucet_address: 'miWQvs1rZFgBjXsP7nfyYA7tBvG6dHgV9d',

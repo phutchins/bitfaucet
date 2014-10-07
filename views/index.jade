@@ -4,26 +4,27 @@ block content
  div.page-header
   h1 Welcome to BitFaucet!
   p.lead We provide bitcoin from testnet for testing purposes.
- p To give back to the faucet, please send your coins to the following address
- //-img(src='/images/wallet_qr.svg')
- p
- p.bg-info.greybox= faucet_address
  h2 Wallet Balance:&nbsp
   = balance
  if message
   p.bg-success.greybox= message
  else
   p Enter your TestNet wallet address and click 'Get Bit' to get some bitcoin
+  h6 (You can withdrawl up to #{bit_limit}btc per request)
  div.jumbotron
   form(method="POST", action="/pour")
    input(type="hidden", name="_method", value="POST")
    p.lead Wallet Address&nbsp
     input.form-control(type="text", name="wallet_address")
    p.lead Ammount&nbsp
-    input.form-control(type="decimal", name="pour_ammount")
+    input.form-control(type="number", step="any", name="pour_ammount", max="5", min="0")
    p
     button.btn.btn-large.btn-success(type="submit") Get Bit
    p
+ hr
+ p To give back to the faucet, please send your coins to the following address
+ //-img(src='/images/wallet_qr.svg')
+ p.bg-info.greybox= faucet_address
  hr
  .footer
   p Philip Hutchins 2014
