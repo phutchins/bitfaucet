@@ -3,14 +3,16 @@ extends layout
 block content
  div.page-header
   h1 Welcome to BitFaucet!
-  p.lead We provide bitcoin from testnet for testing purposes.
- h2 Wallet Balance:&nbsp
+  p
+   lead We provide bitcoin from
+   .lead #{net_name}
+   &nbsp for testing purposes.
+ h3 Wallet Balance:&nbsp
   = balance
  if message
   p.bg-success.greybox= message
  else
   p Enter your TestNet wallet address and click 'Get Bit' to get some bitcoin
-  h6 (You can withdrawl up to #{bit_limit}btc per request)
  div.jumbotron
   form(method="POST", action="/pour")
    input(type="hidden", name="_method", value="POST")
@@ -18,6 +20,7 @@ block content
     input.form-control(type="text", name="wallet_address")
    p.lead Ammount&nbsp
     input.form-control(type="number", step="any", name="pour_ammount", max="5", min="0")
+    h6 (You can withdrawl up to #{bit_limit}btc per request)
    p
     button.btn.btn-large.btn-success(type="submit") Get Bit
    p

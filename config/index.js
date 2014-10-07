@@ -1,6 +1,7 @@
 var config = {
-  local: {
-    mode: 'local',
+  testnet: {
+    mode: 'testnet',
+    name: 'Testnet3',
     port: 3000,
     mongo: {
       host: 'localhost',
@@ -16,13 +17,23 @@ var config = {
     faucet_address: 'miWQvs1rZFgBjXsP7nfyYA7tBvG6dHgV9d',
     bit_limit: '5.0'
   },
-  staging: {
-    mode: 'staging',
+  bptestnet: {
+    mode: 'bptestnet',
+    name: 'BPTestnet',
     port: 4000,
     mongo: {
       host: 'localhost',
       port: 27017
-    }
+    },
+    bitcoin: {
+      host: '127.0.0.1',
+      port: 20003,
+      user: 'bitpaytest',
+      pass: 'local321',
+      timeout: 30000
+    },
+    faucet_address: 'mgwvgQD1WkT71dXFfW2NXY44VnRLJTJofS',
+    bit_limit: '100'
   },
   production: {
     mode: 'production',
@@ -35,5 +46,5 @@ var config = {
 }
 
 module.exports = function(mode) {
-  return config[mode || process.argv[2] || 'local'] || config.local;
+  return config[mode || process.argv[2] || 'testnet'] || config.testnet;
 }

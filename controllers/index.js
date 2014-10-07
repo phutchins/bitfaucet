@@ -16,7 +16,7 @@ module.exports.controller = function(app) {
       btcBalance = parseFloat(balance);
       console.log('Balance:', btcBalance);
       Pour.find( function(err, pours) {
-        res.render('index', {pours: pours, balance: btcBalance, faucet_address: config.faucet_address, bit_limit: config.bit_limit});
+        res.render('index', {pours: pours, balance: btcBalance, faucet_address: config.faucet_address, bit_limit: config.bit_limit, net_name: config.name});
       });
     });
   });
@@ -38,13 +38,13 @@ module.exports.controller = function(app) {
           //console.dir(item);
           Pour.find( function(err, pours) {
             pourMessage = 'Successfully poured ' + req.body.pour_ammount + ' to ' + req.body.wallet_address;
-            res.render('index', {pours: pours, balance: btcBalance, message: pourMessage, faucet_address: config.faucet_address});
+            res.render('index', {pours: pours, balance: btcBalance, message: pourMessage, faucet_address: config.faucet_address, net_name: config.name});
           });
         });
       });
     } else {
       pourMessage = "You tried to pour too much! Don't be stingy...";
-      res.render('index', {pours: pours, balance: btcBalance, message: pourMessage, faucet_address: config.faucet_address});
+      res.render('index', {pours: pours, balance: btcBalance, message: pourMessage, faucet_address: config.faucet_address, net_name: config.name});
     };
   });
 }
