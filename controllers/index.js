@@ -3,6 +3,10 @@ var Pour = require('../models/pour');
 var bitcoin = require('bitcoin');
 var config = require( __dirname + '/../config')();
 var btcClient = new bitcoin.Client(config.bitcoin);
+var qr = require('qr-image');
+var fs = require('fs');
+var code = qr.image(config.faucet_address.toString(), { type: 'svg' });
+var output = fs.createWriteStream('public/images/wallet_qr.svg');
 
 module.exports.controller = function(app) {
   app.get('/', function(req, res) {
