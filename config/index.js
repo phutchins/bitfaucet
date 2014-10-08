@@ -26,14 +26,14 @@ var config = {
       port: 27017
     },
     bitcoin: {
-      host: '127.0.0.1',
-      port: 20003,
-      user: 'bitpaytest',
-      pass: 'local321',
+      host: 'bitcoind.bp',
+      port: 20001,
+      user: 'bitpay',
+      pass: 'iamsatoshi',
       timeout: 30000
     },
     faucet_address: 'mgwvgQD1WkT71dXFfW2NXY44VnRLJTJofS',
-    bit_limit: '100'
+    bit_limit: 100
   },
   production: {
     mode: 'production',
