@@ -5,7 +5,7 @@ var
     ip: { type: String },
     pour_date: { type: Date, default: Date.now },
     wallet_address: { type: String },
-    pour_ammount: { type: Number, default: 0 },
+    pour_amount: { type: Number, default: 0 },
     comment: { type: String }
   }),
   Pour = mongoose.model('Pour', pourSchema);
