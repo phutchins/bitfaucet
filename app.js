@@ -38,11 +38,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-var bootstrapPath = path.join(__dirname, 'node_modules', 'bootstrap');
+var bootstrapPath = path.join(__dirname, 'node_modules', 'bootstrap', 'less');
+var bootswatchPath = path.join(__dirname, 'public', 'stylesheets');
 app.use(lessMiddleware(path.join(__dirname, 'public'), {
   dest: path.join(__dirname, 'public'),
   parser: {
-    paths: [path.join(bootstrapPath, 'less')],
+    paths: [bootswatchPath, bootstrapPath],
   }
 }));
 app.use(express['static'](path.join(__dirname, 'public')));
