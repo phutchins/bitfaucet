@@ -1,10 +1,4 @@
-// BitFaucet is a simple example of a Maki-powered application.  
-// It implements some basic Resources with external lookups, and overrides some
-// of Maki's built-in behaviors.
-
-// First, we'll retrieve the Maki class.  
-// In a real application, this could simply be `require('maki')`.
-var Maki = require('../../lib/Maki');
+var Maki = require('maki');
 // Create an instance of Maki – named according to our app.  
 // As shorthand, this could be `var bitfaucet = require('maki')();`
 var bitfaucet = new Maki();
