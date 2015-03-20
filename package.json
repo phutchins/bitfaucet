@@ -19,7 +19,7 @@
   "dependencies": {
     "bitcoin": "^2.2.0",
     "maki": "git://github.com/martindale/maki",
-    "maki-sessions": "0.0.1",
+    "maki-sessions": "^0.1.0",
     "mongoose": "^3.8.25"
   }
 }
