@@ -12,10 +12,13 @@ module.exports.controller = function(app) {
   app.get('/', function(req, res) {
     btcBalance = parseFloat('0.00000000')
     btcClient.getBalance('*', 1, function(err, balance, resHeaders) {
-      if (err) return console.log(err);
+      if (err) {
+        return console.log("Error getting balance from bitcoind wallet - "+err);
+      }
       btcBalance = parseFloat(balance);
       console.log('Balance:', btcBalance);
       Pour.find( function(err, pours) {
+        if (err) return console.log("Error getting pours...");
         res.render('index', {pours: pours, pour_amount: req.body.pour_amount, balance: btcBalance, faucet_address: config.faucet_address, bit_limit: config.bit_limit, net_name: config.name});
       });
     });
@@ -38,6 +41,7 @@ module.exports.controller = function(app) {
           if (err) return console.error(err);
           //console.dir(item);
           Pour.find( function(err, pours) {
+            if (err) return console.error("Error finding pours - " + err);
             pourMessage = 'Successfully poured ' + req.body.pour_amount + ' to ' + req.body.wallet_address;
             res.render('index', {pours: pours, balance: btcBalance, message: pourMessage, faucet_address: config.faucet_address, net_name: config.name});
           });
