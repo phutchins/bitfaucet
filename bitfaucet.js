@@ -4,7 +4,7 @@ var bitfaucet = new Maki();
 var bitcoin = require('bitcoin');
 
 var Passport = require('maki-sessions');
-var passport = new Passport();
+var passport = new Passport({});
 
 bitfaucet.use( passport );
 
