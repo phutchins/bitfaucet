@@ -1,0 +1,17 @@
+if (typeof(flash) != 'undefined')
+  .ui.row
+    if (typeof(flash.error) != 'undefined')
+      for error in flash.error
+        .ui.error.message
+          i.icon.close(type="button", data-dismiss="alert")
+          p.header !{error}
+    if (typeof(flash.info) != 'undefined')
+      for info in flash.info
+        .ui.info.message
+          i.icon.close(type="button", data-dismiss="alert")
+          p.header !{info}
+    if (typeof(flash.success) != 'undefined')
+      for success in flash.success
+        .ui.success.message
+          i.icon.close(type="button", data-dismiss="alert")
+          p.header !{success}
