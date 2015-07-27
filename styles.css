@@ -1,0 +1,106 @@
+body {
+  width: 110.5%;
+  margin: auto;
+ }
+
+
+.container {
+    width: 960px;
+    margin: 0 auto;
+    margin-top: -22px;
+    font-family:  Geneva;
+    font-size: 15px;
+    color: #7A7A7A;
+    display: flex;
+    margin-right: 250px
+}
+
+input[type="text"] {
+  display: block;
+  margin: 0;
+  width: 60%;
+  height: 38px;
+  font-family: Geneva;
+  font-size: 13px;
+  appearance: none;
+  box-shadow: none;
+  border-radius: 4px;
+  padding-left: 170px;
+  padding-right: 20px;
+}
+
+.header {
+  background: linear-gradient(to right, #94E863 , #71DB92);
+  width: 100%;
+  height: 200px;
+}
+
+.logo {
+  float: left;
+  font-size: 15px;
+  margin-top: -225px;
+  color: white;
+  text-shadow: 2px 2px #68B059;
+  padding-top: 10px;
+  padding-left:25px;
+}
+
+.nav {
+  margin-top: -193px;
+  color: white;
+  padding-top: -50px;
+  padding-left: 452px;
+  text-align: right;
+  font-size: 15px;
+  text-shadow: 1px 1px #68B059;
+}
+
+#nav-amount {
+  font-size: 27px;
+}
+
+.button {
+  padding:15px 60px 15px 60px;
+  background-color: #78DC8B;
+  border: 1px solid #78DC8B;
+  color: #FFFFFF;
+  text-decoration:none;
+  border-radius: 5px;
+  margin-top: 60px;
+  padding-left: 75px;
+  font-size: 12px;
+  margin-left: 230px;
+}
+
+a {
+  text-decoration: none;
+  color:white;
+}
+
+.content {
+  margin-top: 75px;
+  padding: 0px 60px 50px 25px;
+}
+
+.class {
+  margin-right: 500px;
+}
+
+.content p {
+  font-size: 16px;
+}
+
+.footer {
+  padding-left: 265px;
+  padding-top: 20px;
+  font-size: 20px;
+  background-color: #4A4A4A;
+  color: white;
+  font-family: Trebuchet MS ;
+  font-style: italic;
+  height: 50px;
+  position:absolute;
+  bottom:0px;
+  width:100%;
+  width: 90.2%
+}
