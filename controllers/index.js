@@ -28,7 +28,8 @@ module.exports.controller = function(app) {
     // TODO: add constraint for pour frequency and amount
     console.log("User with IP " + req.connection.remoteAddress + " has poured " + req.body.pour_amount + " to address " + req.body.wallet_address);
     console.log("req.body.pour_amount: " + req.body.pour_amount + " config.bit_limit: " + config.bit_limit);
-    if (req.body.pour_amount <= config.bit_limit) {
+   btcClient.getBalance('*', 1, function(err, balance, resHeaders) {
+    if (req.body.pour_amount <= config.bit_limit && balance>=req.body.pour_amount) {
       btcClient.sendToAddress(req.body.wallet_address, parseFloat(req.body.pour_amount), function(err, txid) {
         if (err) return console.error(err);
         var pour = new Pour({
@@ -47,9 +48,14 @@ module.exports.controller = function(app) {
           });
         });
       });
+    } else if (balance<req.body.pour_amount) {
+      pourMessage = "You tried to pour more than the available balance.";
+      res.render('index', {balance: btcBalance, message: pourMessage, faucet_address: config.faucet_address, net_name: config.name});
+
     } else {
       pourMessage = "You tried to pour too much! Don't be stingy...";
       res.render('index', {balance: btcBalance, message: pourMessage, faucet_address: config.faucet_address, net_name: config.name});
-    };
+  }
+});
   });
 }
