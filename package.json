@@ -1,14 +1,15 @@
 {
-  "name": "bitfaucet",
-  "version": "0.1.0",
+  "name": "@fabric/faucet",
+  "version": "0.2.0-dev",
   "description": "bitcoin faucet",
-  "main": "bitfaucet.js",
+  "main": "services/bitfaucet.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
     "bitcoin",
     "maki",
+    "fabric",
     "faucet",
     "bitfaucet",
     "example",
@@ -17,9 +18,7 @@
   "author": "Eric Martindale",
   "license": "MIT",
   "dependencies": {
-    "bitcoin": "^2.2.0",
-    "maki": "git://github.com/martindale/maki",
-    "maki-sessions": "^0.1.0",
-    "mongoose": "^3.8.25"
+    "@fabric/core": "martindale/fabric#faucet",
+    "lodash.merge": "^4.6.2"
   }
 }
