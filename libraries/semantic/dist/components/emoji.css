@@ -42,7 +42,8 @@ em[data-emoji].disabled {
 *******************************/
 
 em[data-emoji].loading:before {
-  animation: loader 2s linear infinite;
+  -webkit-animation: loader 2s linear infinite;
+          animation: loader 2s linear infinite;
 }
 
 /*-------------------

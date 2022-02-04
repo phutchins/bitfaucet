@@ -92,7 +92,8 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
   color: #FFFFFF;
   font-size: 6rem;
   text-shadow: 0 2px 10px rgba(34, 36, 38, 0.2);

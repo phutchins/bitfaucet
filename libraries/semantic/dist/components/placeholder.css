@@ -15,12 +15,22 @@
 .ui.placeholder {
   position: static;
   overflow: hidden;
-  animation: placeholderShimmer 2s linear;
-  animation-iteration-count: infinite;
+  -webkit-animation: placeholderShimmer 2s linear;
+          animation: placeholderShimmer 2s linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
   background-color: #FFFFFF;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.08) 0, rgba(0, 0, 0, 0.15) 15%, rgba(0, 0, 0, 0.08) 30%);
   background-size: 1200px 100%;
   max-width: 30rem;
+}
+@-webkit-keyframes placeholderShimmer {
+  0% {
+    background-position: -1200px 0;
+  }
+  100% {
+    background-position: 1200px 0;
+  }
 }
 @keyframes placeholderShimmer {
   0% {
@@ -34,16 +44,20 @@
   margin-top: 2rem;
 }
 .ui.placeholder + .ui.placeholder {
-  animation-delay: 0.15s;
+  -webkit-animation-delay: 0.15s;
+          animation-delay: 0.15s;
 }
 .ui.placeholder + .ui.placeholder + .ui.placeholder {
-  animation-delay: 0.3s;
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
 }
 .ui.placeholder + .ui.placeholder + .ui.placeholder + .ui.placeholder {
-  animation-delay: 0.45s;
+  -webkit-animation-delay: 0.45s;
+          animation-delay: 0.45s;
 }
 .ui.placeholder + .ui.placeholder + .ui.placeholder + .ui.placeholder + .ui.placeholder {
-  animation-delay: 0.6s;
+  -webkit-animation-delay: 0.6s;
+          animation-delay: 0.6s;
 }
 .ui.placeholder,
 .ui.placeholder > :before,

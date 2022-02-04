@@ -71,7 +71,8 @@
 }
 .ui.toast-container.top.center {
   left: 50%;
-  transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
   top: 0.85714286em;
 }
 .ui.toast-container.bottom.right {
@@ -86,7 +87,8 @@
 }
 .ui.toast-container.bottom.center {
   left: 50%;
-  transform: translate(-50%, 0);
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
   bottom: 0.85714286em;
 }
 .ui.toast-container .visible.toast-box,
@@ -171,11 +173,13 @@
   position: absolute;
   width: 4rem;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 .ui.toast-container .toast-box > .ui.message.icon:not(.vertical).actions > i.icon:not(.close) {
   top: calc(50% - 1.2em);
-  transform: none;
+  -webkit-transform: none;
+          transform: none;
 }
 .ui.toast-container .toast-box > .ui.message.icon:not(.vertical).icon.icon.icon {
   display: block;
@@ -233,20 +237,26 @@
   border-bottom-right-radius: 0;
 }
 .ui.toast-container .toast-box .progressing {
-  animation-iteration-count: 1;
-  animation-timing-function: linear;
+  -webkit-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
 }
 .ui.toast-container .toast-box .progressing.up {
-  animation-name: progressUp;
+  -webkit-animation-name: progressUp;
+          animation-name: progressUp;
 }
 .ui.toast-container .toast-box .progressing.down {
-  animation-name: progressDown;
+  -webkit-animation-name: progressDown;
+          animation-name: progressDown;
 }
 .ui.toast-container .toast-box .progressing.wait {
-  animation-name: progressWait;
+  -webkit-animation-name: progressWait;
+          animation-name: progressWait;
 }
 .ui.toast-container .toast-box:hover .pausable.progressing {
-  animation-play-state: paused;
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
 }
 .ui.toast-container .toast-box .ui.toast:not(.vertical) {
   display: block;
@@ -443,7 +453,8 @@
 }
 .ui.toast:not(.vertical):not(.centered):not(.center) > .centered.image,
 .ui.toast:not(.vertical):not(.centered):not(.center) > .centered.icon {
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   top: 50%;
 }
 .ui.toast:not(.vertical).actions > .centered.image {
@@ -679,6 +690,14 @@
    Progress Bar
  ----------------*/
 
+@-webkit-keyframes progressDown {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
+}
 @keyframes progressDown {
   0% {
     width: 100%;
@@ -687,12 +706,28 @@
     width: 0;
   }
 }
+@-webkit-keyframes progressUp {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
 @keyframes progressUp {
   0% {
     width: 0;
   }
   100% {
     width: 100%;
+  }
+}
+@-webkit-keyframes progressWait {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 @keyframes progressWait {

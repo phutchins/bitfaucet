@@ -100,7 +100,8 @@
   left: 0.03em;
 }
 .ui.labeled.reversed.slider > .labels .label {
-  transform: translate(-100%, -100%);
+  -webkit-transform: translate(-100%, -100%);
+          transform: translate(-100%, -100%);
 }
 
 
@@ -158,18 +159,21 @@
   right: 0;
 }
 .ui.labeled.slider:not(.vertical) > .labels {
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 .ui.labeled.slider > .labels .label {
   display: inline-flex;
   padding: 0.2em 0;
   position: absolute;
-  transform: translate(-50%, -100%);
+  -webkit-transform: translate(-50%, -100%);
+          transform: translate(-50%, -100%);
   white-space: nowrap;
 }
 .ui.bottom.aligned.labeled.slider > .labels .label {
   bottom: 0;
-  transform: translate(-50%, 100%);
+  -webkit-transform: translate(-50%, 100%);
+          transform: translate(-50%, 100%);
 }
 .ui.labeled.ticked.slider > .labels .label:after {
   content: ' ';
@@ -195,10 +199,12 @@
   left: 50%;
   top: 0;
   bottom: 0;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 .ui.labeled.vertical.slider > .labels .label {
-  transform: translate(-100%, -50%);
+  -webkit-transform: translate(-100%, -50%);
+          transform: translate(-100%, -50%);
 }
 .ui.labeled.vertical.slider > .labels .label:after {
   width: 1.5em;
@@ -213,7 +219,8 @@
 
 /* Vertical Reversed Labels */
 .ui.labeled.vertical.reversed.slider > .labels .label {
-  transform: translate(-100%, 50%);
+  -webkit-transform: translate(-100%, 50%);
+          transform: translate(-100%, 50%);
 }
 
 /*--------------

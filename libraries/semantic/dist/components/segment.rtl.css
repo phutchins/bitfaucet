@@ -118,7 +118,8 @@
   justify-content: center;
   align-items: stretch;
   max-width: initial;
-  animation: none;
+  -webkit-animation: none;
+          animation: none;
   overflow: visible;
   padding: 1em 1em;
   min-height: 18rem;
@@ -197,13 +198,15 @@
 }
 .ui.piled.segments:before,
 .ui.piled.segment:before {
-  transform: rotate(1.2deg);
+  -webkit-transform: rotate(1.2deg);
+          transform: rotate(1.2deg);
   top: 0;
   z-index: -2;
 }
 .ui.piled.segments:after,
 .ui.piled.segment:after {
-  transform: rotate(-1.2deg);
+  -webkit-transform: rotate(-1.2deg);
+          transform: rotate(-1.2deg);
   top: 0;
   z-index: -1;
 }
@@ -507,7 +510,8 @@
   margin: -1.5em -1.5em 0 0;
   width: 3em;
   height: 3em;
-  animation: loader 0.6s infinite linear;
+  -webkit-animation: loader 0.6s infinite linear;
+          animation: loader 0.6s infinite linear;
   border: 0.2em solid #767676;
   border-radius: 500rem;
   box-shadow: 0 0 0 1px transparent;

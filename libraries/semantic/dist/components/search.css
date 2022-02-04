@@ -54,7 +54,8 @@
   position: absolute;
   top: 100%;
   left: 0;
-  transform-origin: center top;
+  -webkit-transform-origin: center top;
+          transform-origin: center top;
   white-space: normal;
   text-align: left;
   text-transform: none;
@@ -199,7 +200,8 @@
   margin: -0.64285714em 0 0 -0.64285714em;
   width: 1.28571429em;
   height: 1.28571429em;
-  animation: loader 0.6s infinite linear;
+  -webkit-animation: loader 0.6s infinite linear;
+          animation: loader 0.6s infinite linear;
   border: 0.2em solid #767676;
   border-radius: 500rem;
   box-shadow: 0 0 0 1px transparent;

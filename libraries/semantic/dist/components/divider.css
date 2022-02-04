@@ -90,7 +90,8 @@
   height: 50%;
   line-height: 0;
   text-align: center;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 .ui.vertical.divider:before,
 .ui.vertical.divider:after {
@@ -125,7 +126,8 @@
     position: static;
     top: 0;
     left: 0;
-    transform: none;
+    -webkit-transform: none;
+            transform: none;
   }
   .ui.stackable.grid .ui.vertical.divider:before,
   .ui.grid .stackable.row .ui.vertical.divider:before,

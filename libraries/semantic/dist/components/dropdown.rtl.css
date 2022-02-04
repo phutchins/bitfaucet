@@ -377,7 +377,8 @@ select.ui.dropdown {
   line-height: 1em;
   white-space: normal;
   outline: 0;
-  transform: rotateZ(0deg);
+  -webkit-transform: rotateZ(0deg);
+          transform: rotateZ(0deg);
   min-width: 14em;
   min-height: 2.71428571em;
   background: #FFFFFF;
@@ -595,7 +596,8 @@ select.ui.dropdown {
 @supports (-webkit-touch-callout: none) or (-webkit-overflow-scrolling: touch) or (-moz-appearance:none) {
   @media (-moz-touch-enabled), (pointer: coarse) {
     .ui.dropdown .scrollhint.menu:not(.hidden):before {
-      animation: scrollhint 2s ease 2;
+      -webkit-animation: scrollhint 2s ease 2;
+              animation: scrollhint 2s ease 2;
       content: '';
       z-index: 15;
       display: block;
@@ -610,6 +612,16 @@ select.ui.dropdown {
     }
     .ui.inverted.dropdown .scrollhint.menu:not(.hidden):before {
       border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0)) 1 100%;
+    }
+    @-webkit-keyframes scrollhint {
+      0% {
+        opacity: 1;
+        top: 100%;
+      }
+      100% {
+        opacity: 0;
+        top: 0;
+      }
     }
     @keyframes scrollhint {
       0% {
@@ -954,7 +966,8 @@ select.ui.dropdown {
   margin: -0.64285714em -0.64285714em 0 0;
   width: 1.28571429em;
   height: 1.28571429em;
-  animation: loader 0.6s infinite linear;
+  -webkit-animation: loader 0.6s infinite linear;
+          animation: loader 0.6s infinite linear;
   border: 0.2em solid #767676;
   border-radius: 500rem;
 }
@@ -1527,7 +1540,8 @@ select.ui.dropdown {
   pointer-events: none;
   content: '';
   visibility: visible;
-  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
   width: 0.5em;
   height: 0.5em;
   box-shadow: 1px -1px 0 0 rgba(34, 36, 38, 0.15);
@@ -1560,7 +1574,8 @@ select.ui.dropdown {
   right: 1em;
   left: auto;
   margin: 0;
-  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
 /* Top Right Pointing */
@@ -1577,7 +1592,8 @@ select.ui.dropdown {
   right: auto !important;
   left: 1em !important;
   margin: 0;
-  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
 }
 
 /* Left Pointing */
@@ -1591,7 +1607,8 @@ select.ui.dropdown {
   top: 1em;
   right: -0.25em;
   margin: 0 0 0 0;
-  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
 }
 .ui.left:not(.top):not(.bottom).pointing.dropdown > .left.menu {
   right: auto !important;
@@ -1603,7 +1620,8 @@ select.ui.dropdown {
   right: auto;
   left: -0.25em;
   margin: 0 0 0 0;
-  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
 }
 
 /* Right Pointing */
@@ -1618,7 +1636,8 @@ select.ui.dropdown {
   right: auto;
   left: -0.25em;
   margin: 0 0 0 0;
-  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
 }
 
 /* Bottom Pointing */
@@ -1634,7 +1653,8 @@ select.ui.dropdown {
   bottom: -0.25em;
   left: auto;
   margin: 0;
-  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
 }
 
 /* Reverse Sub-Menu Direction */

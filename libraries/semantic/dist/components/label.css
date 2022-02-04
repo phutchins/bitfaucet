@@ -225,7 +225,8 @@ a.ui.label {
 .ui.tag.labels .label:before,
 .ui.tag.label:before {
   position: absolute;
-  transform: translateY(-50%) translateX(50%) rotate(-45deg);
+  -webkit-transform: translateY(-50%) translateX(50%) rotate(-45deg);
+          transform: translateY(-50%) translateX(50%) rotate(-45deg);
   top: 50%;
   right: 100%;
   content: '';
@@ -399,7 +400,8 @@ a.ui.label {
 /* Right Ribbon */
 .ui[class*="right ribbon"].label {
   text-align: left;
-  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
   border-radius: 0.28571429rem 0 0 0.28571429rem;
 }
 .ui[class*="right ribbon"].label:after {
@@ -1931,7 +1933,8 @@ a.ui.ui.ui.inverted.basic.black.label:hover {
 .ui.pointing.label:before {
   position: absolute;
   content: '';
-  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
   background-image: none;
   z-index: 2;
   width: 0.6666em;
@@ -1948,7 +1951,8 @@ a.ui.ui.ui.inverted.basic.black.label:hover {
 .ui.pointing.label:before,
 .ui[class*="pointing above"].label:before {
   border-width: 1px 0 0 1px;
-  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+          transform: translateX(-50%) translateY(-50%) rotate(45deg);
   top: 0;
   left: 50%;
 }
@@ -1965,7 +1969,8 @@ a.ui.ui.ui.inverted.basic.black.label:hover {
   border-width: 0 1px 1px 0;
   top: auto;
   right: auto;
-  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+          transform: translateX(-50%) translateY(-50%) rotate(45deg);
   top: 100%;
   left: 50%;
 }
@@ -1978,7 +1983,8 @@ a.ui.ui.ui.inverted.basic.black.label:hover {
 }
 .ui[class*="left pointing"].label:before {
   border-width: 0 0 1px 1px;
-  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+          transform: translateX(-50%) translateY(-50%) rotate(45deg);
   bottom: auto;
   right: auto;
   top: 50%;
@@ -1993,7 +1999,8 @@ a.ui.ui.ui.inverted.basic.black.label:hover {
 }
 .ui[class*="right pointing"].label:before {
   border-width: 1px 1px 0 0;
-  transform: translateX(50%) translateY(-50%) rotate(45deg);
+  -webkit-transform: translateX(50%) translateY(-50%) rotate(45deg);
+          transform: translateX(50%) translateY(-50%) rotate(45deg);
   top: 50%;
   right: 0;
   bottom: auto;
@@ -2042,18 +2049,22 @@ a.ui.ui.ui.inverted.basic.black.label:hover {
   top: -1em;
   right: 0;
   white-space: nowrap;
-  transform: translateX(50%);
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
 }
 .ui.right.aligned.floating.label {
-  transform: translateX(1.2em);
+  -webkit-transform: translateX(1.2em);
+          transform: translateX(1.2em);
 }
 .ui.left.floating.label {
   left: 0;
   right: auto;
-  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
 }
 .ui.left.aligned.floating.label {
-  transform: translateX(-1.2em);
+  -webkit-transform: translateX(-1.2em);
+          transform: translateX(-1.2em);
 }
 .ui.bottom.floating.label {
   top: auto;

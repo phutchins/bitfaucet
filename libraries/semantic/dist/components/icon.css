@@ -60,7 +60,8 @@ i.loading.icon {
 }
 i.loading.icon,
 i.loading.icons {
-  animation: loader 2s linear infinite;
+  -webkit-animation: loader 2s linear infinite;
+          animation: loader 2s linear infinite;
 }
 
 
@@ -139,17 +140,21 @@ i.circular.inverted.icon {
 
 i.flipped.icon,
 i.horizontally.flipped.icon {
-  transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+          transform: scale(-1, 1);
 }
 i.vertically.flipped.icon {
-  transform: scale(1, -1);
+  -webkit-transform: scale(1, -1);
+          transform: scale(1, -1);
 }
 .icons i.flipped.icon:not(.corner):not(:first-child),
 .icons i.horizontally.flipped.icon:not(.corner):not(:first-child) {
-  transform: translateX(-50%) translateY(-50%) scale(-1, 1);
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(-1, 1);
+          transform: translateX(-50%) translateY(-50%) scale(-1, 1);
 }
 .icons i.vertically.flipped.icon:not(.corner):not(:first-child) {
-  transform: translateX(-50%) translateY(-50%) scale(1, -1);
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(1, -1);
+          transform: translateX(-50%) translateY(-50%) scale(1, -1);
 }
 
 /*-------------------
@@ -159,26 +164,32 @@ i.vertically.flipped.icon {
 i.rotated.icon,
 i.right.rotated.icon,
 i.clockwise.rotated.icon {
-  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
 i.left.rotated.icon,
 i.counterclockwise.rotated.icon {
-  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
 }
 i.halfway.rotated.icon {
-  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 .icons i.rotated.rotated.icon:not(.corner):not(:first-child),
 .icons i.right.rotated.icon:not(.corner):not(:first-child),
 .icons i.clockwise.rotated.icon:not(.corner):not(:first-child) {
-  transform: translateX(-50%) translateY(-50%) rotate(90deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(90deg);
+          transform: translateX(-50%) translateY(-50%) rotate(90deg);
 }
 .icons i.left.rotated.icon:not(.corner):not(:first-child),
 .icons i.counterclockwise.rotated.icon:not(.corner):not(:first-child) {
-  transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+          transform: translateX(-50%) translateY(-50%) rotate(-90deg);
 }
 .icons i.halfway.rotated.icon:not(.corner):not(:first-child) {
-  transform: translateX(-50%) translateY(-50%) rotate(180deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(180deg);
+          transform: translateX(-50%) translateY(-50%) rotate(180deg);
 }
 
 /*--------------------------
@@ -188,50 +199,62 @@ i.halfway.rotated.icon {
 i.rotated.flipped.icon,
 i.right.rotated.flipped.icon,
 i.clockwise.rotated.flipped.icon {
-  transform: scale(-1, 1) rotate(90deg);
+  -webkit-transform: scale(-1, 1) rotate(90deg);
+          transform: scale(-1, 1) rotate(90deg);
 }
 i.left.rotated.flipped.icon,
 i.counterclockwise.rotated.flipped.icon {
-  transform: scale(-1, 1) rotate(-90deg);
+  -webkit-transform: scale(-1, 1) rotate(-90deg);
+          transform: scale(-1, 1) rotate(-90deg);
 }
 i.halfway.rotated.flipped.icon {
-  transform: scale(-1, 1) rotate(180deg);
+  -webkit-transform: scale(-1, 1) rotate(180deg);
+          transform: scale(-1, 1) rotate(180deg);
 }
 i.rotated.vertically.flipped.icon,
 i.right.rotated.vertically.flipped.icon,
 i.clockwise.rotated.vertically.flipped.icon {
-  transform: scale(1, -1) rotate(90deg);
+  -webkit-transform: scale(1, -1) rotate(90deg);
+          transform: scale(1, -1) rotate(90deg);
 }
 i.left.rotated.vertically.flipped.icon,
 i.counterclockwise.rotated.vertically.flipped.icon {
-  transform: scale(1, -1) rotate(-90deg);
+  -webkit-transform: scale(1, -1) rotate(-90deg);
+          transform: scale(1, -1) rotate(-90deg);
 }
 i.halfway.rotated.vertically.flipped.icon {
-  transform: scale(1, -1) rotate(180deg);
+  -webkit-transform: scale(1, -1) rotate(180deg);
+          transform: scale(1, -1) rotate(180deg);
 }
 .icons i.rotated.flipped.icon:not(.corner):not(:first-child),
 .icons i.right.rotated.flipped.icon:not(.corner):not(:first-child),
 .icons i.clockwise.rotated.flipped.icon:not(.corner):not(:first-child) {
-  transform: translateX(-50%) translateY(-50%) scale(-1, 1) rotate(90deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(-1, 1) rotate(90deg);
+          transform: translateX(-50%) translateY(-50%) scale(-1, 1) rotate(90deg);
 }
 .icons i.left.rotated.flipped.icon:not(.corner):not(:first-child),
 .icons i.counterclockwise.rotated.flipped.icon:not(.corner):not(:first-child) {
-  transform: translateX(-50%) translateY(-50%) scale(-1, 1) rotate(-90deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(-1, 1) rotate(-90deg);
+          transform: translateX(-50%) translateY(-50%) scale(-1, 1) rotate(-90deg);
 }
 .icons i.halfway.rotated.flipped.icon:not(.corner):not(:first-child) {
-  transform: translateX(-50%) translateY(-50%) scale(-1, 1) rotate(180deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(-1, 1) rotate(180deg);
+          transform: translateX(-50%) translateY(-50%) scale(-1, 1) rotate(180deg);
 }
 .icons i.rotated.vertically.flipped.icon:not(.corner):not(:first-child),
 .icons i.right.rotated.vertically.flipped.icon:not(.corner):not(:first-child),
 .icons i.clockwise.rotated.vertically.flipped.icon:not(.corner):not(:first-child) {
-  transform: translateX(-50%) translateY(-50%) scale(1, -1) rotate(90deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(1, -1) rotate(90deg);
+          transform: translateX(-50%) translateY(-50%) scale(1, -1) rotate(90deg);
 }
 .icons i.left.rotated.vertically.flipped.icon:not(.corner):not(:first-child),
 .icons i.counterclockwise.rotated.vertically.flipped.icon:not(.corner):not(:first-child) {
-  transform: translateX(-50%) translateY(-50%) scale(1, -1) rotate(-90deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(1, -1) rotate(-90deg);
+          transform: translateX(-50%) translateY(-50%) scale(1, -1) rotate(-90deg);
 }
 .icons i.halfway.rotated.vertically.flipped.icon:not(.corner):not(:first-child) {
-  transform: translateX(-50%) translateY(-50%) scale(1, -1) rotate(180deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) scale(1, -1) rotate(180deg);
+          transform: translateX(-50%) translateY(-50%) scale(1, -1) rotate(180deg);
 }
 
 /*-------------------
@@ -532,7 +555,8 @@ i.icons .icon {
   margin: 0;
 }
 i.icons .icon:not(.corner):not(.rotated):not(.flipped) {
-  transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
 }
 i.icons .icon:first-child {
   position: static;
@@ -541,7 +565,8 @@ i.icons .icon:first-child {
   vertical-align: top;
 }
 i.icons:not(.bordered):not(.circular) .icon:first-child:not(.rotated):not(.flipped) {
-  transform: none;
+  -webkit-transform: none;
+          transform: none;
 }
 
 /* Corner Icon */
@@ -554,7 +579,8 @@ i.icons .corner.icon {
   text-shadow: -1px -1px 0 #FFFFFF, 1px -1px 0 #FFFFFF, -1px 1px 0 #FFFFFF, 1px 1px 0 #FFFFFF;
 }
 i.icons .corner.icon:not(.rotated):not(.flipped) {
-  transform: none;
+  -webkit-transform: none;
+          transform: none;
 }
 i.icons .icon.corner[class*="top right"] {
   top: 0;
@@ -606,7 +632,8 @@ i.circular.icons {
 i.bordered.icons i.icon:first-child,
 i.circular.icons i.icon:first-child {
   position: absolute;
-  transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+          transform: translateX(-50%) translateY(-50%);
 }
 
 /* Inverted Icon */

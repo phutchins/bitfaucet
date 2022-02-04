@@ -143,7 +143,8 @@
   width: 1.28571429em;
   height: 1.28571429em;
   border-radius: 500rem;
-  animation: loader 0.6s infinite linear;
+  -webkit-animation: loader 0.6s infinite linear;
+          animation: loader 0.6s infinite linear;
   border: 0.2em solid currentColor;
   color: #FFFFFF;
   box-shadow: 0 0 0 1px transparent;
@@ -238,10 +239,13 @@
 /* Vertical */
 .ui.vertical.animated.button .visible.content,
 .ui.vertical.animated.button .hidden.content {
+  transition: top 0.3s ease, -webkit-transform 0.3s ease;
   transition: top 0.3s ease, transform 0.3s ease;
+  transition: top 0.3s ease, transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 .ui.vertical.animated.button .visible.content {
-  transform: translateY(0%);
+  -webkit-transform: translateY(0%);
+          transform: translateY(0%);
   right: auto;
 }
 .ui.vertical.animated.button .hidden.content {
@@ -251,7 +255,8 @@
 }
 .ui.vertical.animated.button:focus .visible.content,
 .ui.vertical.animated.button:hover .visible.content {
-  transform: translateY(200%);
+  -webkit-transform: translateY(200%);
+          transform: translateY(200%);
   right: auto;
 }
 .ui.vertical.animated.button:focus .hidden.content,
@@ -263,33 +268,39 @@
 /* Fade */
 .ui.fade.animated.button .visible.content,
 .ui.fade.animated.button .hidden.content {
+  transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
   transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, -webkit-transform 0.3s ease;
 }
 .ui.fade.animated.button .visible.content {
   left: auto;
   right: auto;
   opacity: 1;
-  transform: scale(1);
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 .ui.fade.animated.button .hidden.content {
   opacity: 0;
   left: 0;
   right: auto;
-  transform: scale(1.5);
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
 }
 .ui.fade.animated.button:focus .visible.content,
 .ui.fade.animated.button:hover .visible.content {
   left: auto;
   right: auto;
   opacity: 0;
-  transform: scale(0.75);
+  -webkit-transform: scale(0.75);
+          transform: scale(0.75);
 }
 .ui.fade.animated.button:focus .hidden.content,
 .ui.fade.animated.button:hover .hidden.content {
   left: 0;
   right: auto;
   opacity: 1;
-  transform: scale(1);
+  -webkit-transform: scale(1);
+          transform: scale(1);
 }
 
 /*-------------------
@@ -910,7 +921,8 @@
   border-top-left-radius: inherit;
   border-bottom-left-radius: inherit;
   text-align: center;
-  animation: none;
+  -webkit-animation: none;
+          animation: none;
   padding: 0.78571429em 0 0.78571429em 0;
   margin: 0;
   width: 2.57142857em;
@@ -964,7 +976,8 @@
 
 /* Loading Icon in Labeled Button */
 .ui.labeled.icon.button > .loading.icon:before {
-  animation: loader 2s linear infinite;
+  -webkit-animation: loader 2s linear infinite;
+          animation: loader 2s linear infinite;
 }
 
 /*--------------

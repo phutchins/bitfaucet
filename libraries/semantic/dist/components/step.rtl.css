@@ -78,7 +78,8 @@
   border-color: rgba(34, 36, 38, 0.15);
   border-width: 0 0 1px 1px;
   transition: background-color 0.1s ease, opacity 0.1s ease, color 0.1s ease, box-shadow 0.1s ease;
-  transform: translateY(-50%) translateX(-50%) rotate(45deg);
+  -webkit-transform: translateY(-50%) translateX(-50%) rotate(45deg);
+          transform: translateY(-50%) translateX(-50%) rotate(45deg);
 }
 
 /* First Step */
@@ -221,7 +222,8 @@
   border-width: 1px 1px 0 0;
   right: 0;
   left: 100%;
-  transform: translateY(-50%) translateX(50%) rotate(45deg);
+  -webkit-transform: translateY(-50%) translateX(50%) rotate(45deg);
+          transform: translateY(-50%) translateX(50%) rotate(45deg);
 }
 .ui.vertical.steps .active.step:after {
   display: block;
@@ -267,7 +269,8 @@
     top: unset;
     bottom: -1.14285714em;
     left: 50%;
-    transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+    -webkit-transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+            transform: translateY(-50%) translateX(-50%) rotate(-45deg);
   }
   .ui.vertical.steps .active.step:last-child:after {
     display: none;
@@ -411,7 +414,8 @@
     top: unset;
     bottom: -1.14285714em;
     left: 50%;
-    transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+    -webkit-transform: translateY(-50%) translateX(-50%) rotate(-45deg);
+            transform: translateY(-50%) translateX(-50%) rotate(-45deg);
   }
   
 /* Content */

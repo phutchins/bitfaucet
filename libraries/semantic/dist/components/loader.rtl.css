@@ -23,7 +23,8 @@
   margin: 0;
   text-align: center;
   z-index: 1000;
-  transform: translateX(50%) translateY(-50%);
+  -webkit-transform: translateX(50%) translateY(-50%);
+          transform: translateX(50%) translateY(-50%);
 }
 
 /* Static Shape */
@@ -46,7 +47,8 @@
   right: 50%;
   width: 100%;
   height: 100%;
-  animation: loader 0.6s infinite linear;
+  -webkit-animation: loader 0.6s infinite linear;
+          animation: loader 0.6s infinite linear;
   border: 0.2em solid #767676;
   border-radius: 500rem;
   box-shadow: 0 0 0 1px transparent;
@@ -57,19 +59,28 @@
 .ui.fast.loading.loading .input > i.icon:after,
 .ui.fast.loading.loading > i.icon:after,
 .ui.fast.loader:after {
-  animation-duration: 0.3s;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
 }
 .ui.slow.loading.loading:after,
 .ui.slow.loading.loading .input > i.icon:after,
 .ui.slow.loading.loading > i.icon:after,
 .ui.slow.loader:after {
-  animation-duration: 0.9s;
+  -webkit-animation-duration: 0.9s;
+          animation-duration: 0.9s;
 }
 
 /* Active Animation */
+@-webkit-keyframes loader {
+  100% {
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+  }
+}
 @keyframes loader {
   100% {
-    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
   }
 }
 
@@ -123,7 +134,8 @@
 
 .ui.indeterminate.loader:after {
   animation-direction: reverse;
-  animation-duration: 1.2s;
+  -webkit-animation-duration: 1.2s;
+          animation-duration: 1.2s;
 }
 .ui.loader.active,
 .ui.loader.visible {
@@ -630,7 +642,8 @@
   margin: 0;
   right: 0;
   top: 0;
-  transform: none;
+  -webkit-transform: none;
+          transform: none;
 }
 .ui.inline.loader.active,
 .ui.inline.loader.visible {
@@ -685,45 +698,83 @@
 .ui.elastic.loading.loading .input > i.icon:after,
 .ui.elastic.loading.loading > i.icon:after,
 .ui.elastic.loader.loader:after {
-  animation: loader 1s infinite cubic-bezier(0.27, 1.05, 0.92, 0.61);
-  animation-delay: 0.3s;
+  -webkit-animation: loader 1s infinite cubic-bezier(0.27, 1.05, 0.92, 0.61);
+          animation: loader 1s infinite cubic-bezier(0.27, 1.05, 0.92, 0.61);
+  -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
 }
 .ui.elastic.loading.loading.loading:not(.form):not(.segment):not(.segments):not(.card):before,
 .ui.elastic.loading.loading.loading .input > i.icon:before,
 .ui.elastic.loading.loading.loading > i.icon:before,
 .ui.elastic.loader.loader:before {
-  animation: elastic-loader 1s infinite cubic-bezier(0.27, 1.05, 0.92, 0.61);
+  -webkit-animation: elastic-loader 1s infinite cubic-bezier(0.27, 1.05, 0.92, 0.61);
+          animation: elastic-loader 1s infinite cubic-bezier(0.27, 1.05, 0.92, 0.61);
   -moz-animation: currentcolor-elastic-loader 1s infinite cubic-bezier(0.27, 1.05, 0.92, 0.61);
   border-left-color: transparent;
 }
 .ui.elastic.inline.loader:empty {
-  animation: loader 8s infinite linear;
+  -webkit-animation: loader 8s infinite linear;
+          animation: loader 8s infinite linear;
 }
 .ui.slow.elastic.loading.loading:not(.form):not(.segment):not(.segments):not(.card):after,
 .ui.slow.elastic.loading.loading .input > i.icon:after,
 .ui.slow.elastic.loading.loading > i.icon:after,
 .ui.slow.elastic.loader.loader:after {
-  animation-duration: 1.5s;
-  animation-delay: 0.45s;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-delay: 0.45s;
+          animation-delay: 0.45s;
 }
 .ui.slow.elastic.loading.loading.loading:not(.form):not(.segment):not(.segments):not(.card):before,
 .ui.slow.elastic.loading.loading.loading .input > i.icon:before,
 .ui.slow.elastic.loading.loading.loading > i.icon:before,
 .ui.slow.elastic.loader.loader:before {
-  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
 }
 .ui.fast.elastic.loading.loading:not(.form):not(.segment):not(.segments):not(.card):after,
 .ui.fast.elastic.loading.loading .input > i.icon:after,
 .ui.fast.elastic.loading.loading > i.icon:after,
 .ui.fast.elastic.loader.loader:after {
-  animation-duration: 0.66s;
-  animation-delay: 0.2s;
+  -webkit-animation-duration: 0.66s;
+          animation-duration: 0.66s;
+  -webkit-animation-delay: 0.2s;
+          animation-delay: 0.2s;
 }
 .ui.fast.elastic.loading.loading.loading:not(.form):not(.segment):not(.segments):not(.card):before,
 .ui.fast.elastic.loading.loading.loading .input > i.icon:before,
 .ui.fast.elastic.loading.loading.loading > i.icon:before,
 .ui.fast.elastic.loader.loader:before {
-  animation-duration: 0.66s;
+  -webkit-animation-duration: 0.66s;
+          animation-duration: 0.66s;
+}
+@-webkit-keyframes elastic-loader {
+  0%,
+  1% {
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+  }
+  1.1%,
+  50% {
+    border-right-color: inherit;
+  }
+  10%,
+  35.1% {
+    border-bottom-color: transparent;
+  }
+  10.1%,
+  35% {
+    border-bottom-color: inherit;
+  }
+  50.1% {
+    border-right-color: transparent;
+  }
+  100% {
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+  }
 }
 @keyframes elastic-loader {
   0%,
@@ -749,7 +800,36 @@
   100% {
     border-right-color: transparent;
     border-bottom-color: transparent;
-    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
+  }
+}
+@-webkit-keyframes currentcolor-elastic-loader {
+  0%,
+  1% {
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+  }
+  1.1%,
+  50% {
+    border-right-color: currentColor;
+  }
+  10%,
+  35.1% {
+    border-bottom-color: transparent;
+  }
+  10.1%,
+  35% {
+    border-bottom-color: currentColor;
+  }
+  50.1% {
+    border-right-color: transparent;
+  }
+  100% {
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
   }
 }
 @keyframes currentcolor-elastic-loader {
@@ -776,7 +856,8 @@
   100% {
     border-right-color: transparent;
     border-bottom-color: transparent;
-    transform: rotate(-360deg);
+    -webkit-transform: rotate(-360deg);
+            transform: rotate(-360deg);
   }
 }
 

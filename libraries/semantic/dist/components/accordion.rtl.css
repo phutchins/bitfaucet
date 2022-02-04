@@ -57,9 +57,12 @@
   margin: 0 0 0 0.25rem;
   padding: 0;
   font-size: 1em;
+  transition: opacity 0.1s ease, -webkit-transform 0.1s ease;
   transition: transform 0.1s ease, opacity 0.1s ease;
+  transition: transform 0.1s ease, opacity 0.1s ease, -webkit-transform 0.1s ease;
   vertical-align: baseline;
-  transform: none;
+  -webkit-transform: none;
+          transform: none;
 }
 
 /*--------------
@@ -75,7 +78,8 @@
 .ui.accordion.menu .item .title > .dropdown.icon {
   float: left;
   margin: 0.21425em 1em 0 0;
-  transform: rotate(-180deg);
+  -webkit-transform: rotate(-180deg);
+          transform: rotate(-180deg);
 }
 
 /* Header */
@@ -91,10 +95,12 @@
 
 .ui.accordion .active.title .dropdown.icon,
 .ui.accordion .accordion .active.title .dropdown.icon {
-  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
 }
 .ui.accordion.menu .item .active.title > .dropdown.icon {
-  transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
 }
 
 
