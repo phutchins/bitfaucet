@@ -4,6 +4,12 @@
   "description": "bitcoin faucet",
   "main": "services/bitfaucet.js",
   "scripts": {
+    "build": "npm run build:fomantic && npm run build:app",
+    "build:app": "react-scripts build",
+    "build:fomantic": "cd libraries/semantic && gulp build && cd ../../",
+    "debug": "react-scripts start",
+    "eject": "react-scripts eject",
+    "start": "react-scripts start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -19,6 +25,30 @@
   "license": "MIT",
   "dependencies": {
     "@fabric/core": "martindale/fabric#faucet",
+    "@fabric/http": "martindale/fabric#portal-develop",
+    "bitcoinjs-lib": "^6.0.0",
     "lodash.merge": "^4.6.2"
+  },
+  "devDependencies": {
+    "fomantic-ui": "^2.8.8",
+    "fomantic-ui-css": "^2.8.8",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^6.0.1",
+    "react-scripts": "4.0.3",
+    "semantic-ui-react": "^2.0.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
