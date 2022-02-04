@@ -9,22 +9,30 @@ const Service = require('@fabric/core/types/service');
 
 // Fabric Services
 const Bitcoin = require('@fabric/core/services/bitcoin');
+const HTTPServer = require('@fabric/http/types/server');
 
 class BitFaucet extends Service {
   constructor (settings = {}) {
     super(settings);
 
+    // Settings
     this.settings = merge({
       bitcoin: {
         authority: 'http://rpcusername:rpcpassword@localhost:8444'
       },
       pours: {
-        amount: '00000000.01000000'
+        amount: 0.01
       }
     }, settings);
 
+    // Services
     this.bitcoin = new Bitcoin(this.settings.bitcoin);
+    this.http = new HTTPServer(this.settings.http);
 
+    // Faucet methods
+    this.http._registerMethod('DripRequest', this._handleDripRequest.bind(this));
+
+    // Local state
     this._state = {
       status: 'PAUSED',
       content: {
@@ -34,6 +42,10 @@ class BitFaucet extends Service {
     };
 
     return this;
+  }
+
+  async _handleDripRequest (request) {
+    return this.pour(request);
   }
 
   async pour (address) {
@@ -59,7 +71,9 @@ class BitFaucet extends Service {
 
   async start () {
     this.trust(this.bitcoin, 'BTC');
+    this.trust(this.http, 'HTTP');
     await this.bitcoin.start();
+    await this.http.start();
     this.emit('ready', { id: this.id });
     return this;
   }

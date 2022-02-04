@@ -44,11 +44,13 @@ class Home extends FabricComponent {
 
   onSubmit (e) {
     console.log('submitting:', e);
-    const { address } = this.state;
-    this.setState({ address: address });
 
     const message = {
-      content: 'Hello, world!'
+      type: 'Call',
+      data: {
+        method: 'DripRequest',
+        params: [ this.form.current.state.fields.address ]
+      }
     };
 
     this.bridge.current.send(message).then((result) => {

@@ -137,8 +137,8 @@ class FaucetDripForm extends FabricComponent {
           <Form.Field>
             <label>Request a deposit to...</label>
             <div className='ui input'>
-              <Input action type='text' placeholder='Enter a Bitcoin address here' onKeyUp={this._handleAddressChange.bind(this)} />
-              <Button attached type='submit' color='green' content='Request' type='submit' icon='right chevron' labelPosition='right' />
+              <Input action type='text' placeholder='Enter a Bitcoin address here' value={this.state.address} onKeyUp={this._handleAddressChange.bind(this)} />
+              <Button attached type='submit' color='green' content='Request' icon='right chevron' labelPosition='right' onClick={this.props.onSubmit.bind(this)} />
             </div>
           </Form.Field>
         </Form>

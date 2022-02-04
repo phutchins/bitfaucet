@@ -5,12 +5,12 @@
   "main": "services/bitfaucet.js",
   "scripts": {
     "build": "npm run build:fomantic && npm run build:app",
-    "build:app": "react-scripts build",
+    "build:app": "react-scripts build && cp -r build/* assets",
     "build:fomantic": "cd libraries/semantic && gulp build && cd ../../",
     "debug": "react-scripts start",
     "eject": "react-scripts eject",
-    "start": "react-scripts start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node scripts/node.js",
+    "test": "mocha tests"
   },
   "keywords": [
     "bitcoin",
@@ -32,6 +32,7 @@
   "devDependencies": {
     "fomantic-ui": "^2.8.8",
     "fomantic-ui-css": "^2.8.8",
+    "mocha": "^9.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.6",
