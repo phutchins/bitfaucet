@@ -50,7 +50,7 @@ ReactDOM.render(
   <React.StrictMode>
     {/* <Provider store={store}> */}
     {/* <Provider> */}
-      <App state={state} />
+      <App state={state} host={state.host} />
     {/* </Provider> */}
   </React.StrictMode>,
   document.getElementById('root')

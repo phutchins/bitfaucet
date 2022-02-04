@@ -32,9 +32,10 @@ class Home extends FabricComponent {
     // TODO: prepare Fabric
     // i.e., use _state here, then import from getter and apply properties
     // _from_ @react
-    this.state = {
+    this.state = Object.assign({
+      host: 'localhost',
       integrity: 'sha256-deadbeefbabe'
-    };
+    }, props);
 
     this.bridge = React.createRef();
     this.form = React.createRef();
@@ -75,7 +76,7 @@ class Home extends FabricComponent {
                   </Card>
                   <Card fluid>
                     <Card.Content>
-                      <FabricBridge ref={this.bridge} onChange={this._handleBridgeChange.bind(this)} state={this.state} />
+                      <FabricBridge ref={this.bridge} host={this.state.host} onChange={this._handleBridgeChange.bind(this)} state={this.state} />
                     </Card.Content>
                   </Card>
                 </Container>

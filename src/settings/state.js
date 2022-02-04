@@ -6,6 +6,7 @@ const playnet = require('../../node_modules/@fabric/core/settings/playnet');
 module.exports = {
   host: '65.21.231.166',
   port: 9999,
+  secure: false,
   seed: null,
   status: 'PAUSED',
   balances: [

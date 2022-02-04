@@ -57,6 +57,7 @@ class App extends FabricComponent {
     // this.fabric = new Fabric();
     this.state = merge({
       actor: null,
+      host: 'localhost',
       integrity: null,
       snapshots: []
     }, state, settings);
@@ -79,7 +80,7 @@ class App extends FabricComponent {
         <Router>
           <div className='pusher'>
             <Routes>
-              <Route path='/' exact element={<Home state={this.state} balances={this.state.balances} keys={this.state.keys} />} />
+              <Route path='/' exact element={<Home state={this.state} balances={this.state.balances} keys={this.state.keys} host={this.state.host} />} />
               <Route path='/transactions' element={<FabricTransactionList state={this.state} balances={this.state.balances} keys={this.state.keys} />} />
             </Routes>
             {/*
