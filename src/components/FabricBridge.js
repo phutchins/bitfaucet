@@ -42,9 +42,9 @@ class FabricBridge extends FabricComponent {
     console.log('bridge settings:', this.settings);
 
     this.remote = new Remote({
-      host: 'nuevo' || this.settings.host,
+      host: this.settings.host,
       port: this.settings.port,
-      secure: false
+      secure: this.settings.secure
     });
 
     /* this.agent = new Worker({
