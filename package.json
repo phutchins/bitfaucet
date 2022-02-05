@@ -5,10 +5,9 @@
   "main": "services/bitfaucet.js",
   "scripts": {
     "build": "npm run build:fomantic && npm run build:app",
-    "build:app": "git rm -rf assets/static/js && react-scripts build && cp -r build/* assets",
+    "build:app": "git rm -rf assets/static/js && react-scripts build && cp -r build/* assets && git add assets/static/js",
     "build:fomantic": "cd libraries/semantic && gulp build && cd ../../",
     "debug": "react-scripts start",
-    "dist": "npm run build:app && git add assets/static",
     "eject": "react-scripts eject",
     "start": "node scripts/node.js",
     "test": "mocha tests"
