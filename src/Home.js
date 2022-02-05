@@ -44,13 +44,11 @@ class Home extends FabricComponent {
   }
 
   onSubmit (e) {
-    console.log('submitting:', e);
-
     const message = {
       type: 'Call',
       data: {
         method: 'DripRequest',
-        params: [ this.form.current.state.fields.address ]
+        params: [ this.form.current.state.address ]
       }
     };
 

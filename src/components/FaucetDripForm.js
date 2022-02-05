@@ -56,18 +56,16 @@ class FaucetDripForm extends FabricComponent {
     // i.e., use _state here, then import from getter and apply properties
     // _from_ @react
     this.state = merge({
+      address: null,
       content: {
         requests: []
-      },
-      fields: {
-        address: ''
       },
       requests: {},
       secret: Actor.randomBytes(32) // solution hash (revealed on trade)
     }, props);
 
     // this.bitcoin = new Bitcoin(this.settings);
-    this.form = React.createRef();
+    this.address = React.createRef();
 
     return this;
   }
@@ -81,11 +79,7 @@ class FaucetDripForm extends FabricComponent {
   }
 
   _handleAddressChange (e) {
-    this.setState({
-      fields: {
-        address: e.target.value
-      }
-    });
+    this.setState({ address: e.target.value });
 
     console.log('state:', this.state);
     console.log('value:', e.target.value);
@@ -113,10 +107,14 @@ class FaucetDripForm extends FabricComponent {
     console.log('submit button click:', e);
   }
 
-  handleChange (e) {
+  _handleChange (e) {
     const fields = { ...this.state.fields, [e.target.name]: e.target.value };
     // TODO: merge old state
     this.setState({ fields: fields });
+  }
+
+  handleChange (e) {
+    this.setState({ address: e.target.value });
   }
 
   handleSubmit (e) {
@@ -137,7 +135,7 @@ class FaucetDripForm extends FabricComponent {
           <Form.Field>
             <label>Request a deposit to...</label>
             <div className='ui input'>
-              <Input action type='text' placeholder='Enter a Bitcoin address here' value={this.state.address} onKeyUp={this._handleAddressChange.bind(this)} />
+              <Input ref={this.address} action type='text' placeholder='Enter a Bitcoin address here' />
               <Button attached type='submit' color='green' content='Request' icon='right chevron' labelPosition='right' onClick={this.props.onSubmit.bind(this)} />
             </div>
           </Form.Field>
