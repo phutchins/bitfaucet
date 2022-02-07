@@ -29,32 +29,49 @@ class Home extends FabricComponent {
   constructor (props) {
     super(props);
 
+    this.settings = Object.assign({
+      host: 'localhost',
+      integrity: 'sha256-deadbeefbabe',
+      status: 'PAUSED'
+    }, props);
+
     // TODO: prepare Fabric
     // i.e., use _state here, then import from getter and apply properties
     // _from_ @react
-    this.state = Object.assign({
-      host: 'localhost',
-      integrity: 'sha256-deadbeefbabe'
-    }, props);
+    this.state = Object.assign({}, this.settings, props);
 
     this.bridge = React.createRef();
+    this.button = React.createRef();
+    this.field = React.createRef();
     this.form = React.createRef();
+    this.modal = React.createRef();
 
     return;
   }
 
   onSubmit (e) {
+    const self = this;
+
+    this.form.current.setState({ status: 'LOADING' });
+    this.button.current.setState({ status: 'LOADING '});
+
+    const address = this.form.current.state.address;
     const message = {
       type: 'Call',
       data: {
         method: 'DripRequest',
-        params: [ this.form.current.state.address ]
+        params: [ address ]
       }
     };
 
-    this.bridge.current.send(message).then((result) => {
-      console.log('result:', result);
-    });
+    setTimeout(function () {
+      self.bridge.current.send(message).then((result) => {
+        self.field.current.value = '';
+        self.field.current.setState({ address: '' });
+        self.form.current.setState({ status: 'LOADED' });
+        self.button.current.setState({ status: 'LOADED '});
+      });
+    }, 1000);
   }
 
   render () {
@@ -69,7 +86,7 @@ class Home extends FabricComponent {
                 <Container className='left aligned' style={{ marginTop: '5em' }}>
                   <Card fluid>
                     <Card.Content>
-                      <FaucetDripForm ref={this.form} onSubmit={this.onSubmit.bind(this)} />
+                      <FaucetDripForm ref={this.form} button={this.button} field={this.field} onSubmit={this.onSubmit.bind(this)} />
                     </Card.Content>
                   </Card>
                   <Card fluid>

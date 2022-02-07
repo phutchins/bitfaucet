@@ -20,6 +20,9 @@ class BitFaucet extends Service {
       bitcoin: {
         authority: 'http://rpcusername:rpcpassword@localhost:8444'
       },
+      http: {
+        port: 7222
+      },
       pours: {
         amount: 0.01
       }
