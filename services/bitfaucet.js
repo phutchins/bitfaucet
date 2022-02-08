@@ -75,9 +75,12 @@ class BitFaucet extends Service {
   async start () {
     this.trust(this.bitcoin, 'BTC');
     this.trust(this.http, 'HTTP');
+
     await this.bitcoin.start();
     await this.http.start();
+
     this.emit('ready', { id: this.id });
+
     return this;
   }
 }

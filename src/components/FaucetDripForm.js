@@ -78,16 +78,8 @@ class FaucetDripForm extends FabricComponent {
 
   _handleAddressChange (e) {
     this.setState({ address: e.target.value });
-
-    console.log('state:', this.state);
-    console.log('value:', e.target.value);
-    console.log('network:', this.networks.regtest);
     const isValid = this.validateAddress(e.target.value);
-    console.log('isValid:', isValid);
-
-    if (isValid) {
-
-    } else {
+    if (!isValid) {
       this.setState({
         status: 'ERROR',
         errors: [

@@ -1,3 +1,6 @@
+// State
+import * as defaults from './settings/state';
+
 // Dependencies
 import React from 'react';
 import {
@@ -35,7 +38,7 @@ class Home extends FabricComponent {
       port: 7222,
       secure: false,
       status: 'PAUSED'
-    }, props);
+    }, defaults, props);
 
     // TODO: prepare Fabric
     // i.e., use _state here, then import from getter and apply properties
@@ -66,8 +69,10 @@ class Home extends FabricComponent {
       }
     };
 
+    if (this.settings.debug) console.log('Message to send over bridge:', message);
     setTimeout(function () {
       self.bridge.current.send(message).then((result) => {
+        if (this.settings.debug) console.log('Message sent over bridge, result:', result);
         self.field.current.value = '';
         self.field.current.setState({ address: '' });
         self.form.current.setState({ status: 'LOADED' });
