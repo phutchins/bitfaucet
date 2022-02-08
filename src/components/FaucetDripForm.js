@@ -13,20 +13,17 @@ import React from 'react';
 // Fabric Types
 import FabricComponent from '../types/component';
 
+// Fabric Components
+import FabricModal from './FabricModal';
+
 // Fabric Services
 // import Bitcoin from '@fabric/core/services/bitcoin';
 
 // Components
 import {
   Button,
-  // Container,
-  Dropdown,
   Form,
-  // Grid,
-  Icon,
   Input
-  // Menu,
-  // Segment
 } from 'semantic-ui-react';
 
 // Internals
@@ -61,11 +58,12 @@ class FaucetDripForm extends FabricComponent {
         requests: []
       },
       requests: {},
-      secret: Actor.randomBytes(32) // solution hash (revealed on trade)
+      secret: Actor.randomBytes(32), // solution hash (revealed on trade)
+      status: 'LOADING'
     }, props);
 
+    // TODO: evaluate removing ZMQ
     // this.bitcoin = new Bitcoin(this.settings);
-    this.address = React.createRef();
 
     return this;
   }
@@ -117,27 +115,26 @@ class FaucetDripForm extends FabricComponent {
     this.setState({ address: e.target.value });
   }
 
-  handleSubmit (e) {
-    console.log('submitting:', e);
-    const { name, email } = this.state
-    this.setState({ submittedName: name, submittedEmail: email })
-  }
-
-  regenerate () {
-    this.setState({ secret: Actor.randomBytes(32) });
-    this.sync();
-  }
-
   render () {
     return (
       <>
-        <Form ref={this.form} onSubmit={this.props.onSubmit.bind(this)} onChange={this.handleChange.bind(this)}>
+        <Form
+          ref={this.props.form}
+          loading={(this.state.status === 'LOADING' ? 'loading' : undefined)}
+          disabled={(this.state.status === 'LOADING' ? 'disabled' : undefined)}
+          onSubmit={this.props.onSubmit.bind(this)} onChange={this.handleChange.bind(this)}>
           <Form.Field>
-            <label>Request a deposit to...</label>
+            <label>Request a deposit to&hellip;</label>
             <div className='ui input'>
-              <Input ref={this.address} action type='text' placeholder='Enter a Bitcoin address here' />
-              <Button attached type='submit' color='green' content='Request' icon='right chevron' labelPosition='right' onClick={this.props.onSubmit.bind(this)} />
+              <Input ref={this.props.field} action type='text' placeholder='Enter a Bitcoin address here' value={this.state.address} />
+              <Button ref={this.props.button}
+                attached
+                type='submit'
+                loading={(this.state.status === 'SUBMITTING') ? 'loading' : undefined}
+                disabled={(this.state.status === 'SUBMITTING') ? 'disabled' : undefined}
+                color='green' content='Request' icon='right chevron' labelPosition='right' onClick={this.props.onSubmit.bind(this)} />
             </div>
+            <FabricModal />
           </Form.Field>
         </Form>
       </>

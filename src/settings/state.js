@@ -4,9 +4,9 @@
 const playnet = require('../../node_modules/@fabric/core/settings/playnet');
 
 module.exports = {
-  host: '65.21.231.166',
-  port: 9999,
-  secure: false,
+  host: 'faucet.playnet.portaldefi.com',
+  port: 443,
+  secure: true,
   seed: null,
   status: 'PAUSED',
   balances: [

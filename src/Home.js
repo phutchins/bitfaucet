@@ -30,15 +30,17 @@ class Home extends FabricComponent {
     super(props);
 
     this.settings = Object.assign({
+      debug: false,
       host: 'localhost',
-      integrity: 'sha256-deadbeefbabe',
+      port: 7222,
+      secure: false,
       status: 'PAUSED'
     }, props);
 
     // TODO: prepare Fabric
     // i.e., use _state here, then import from getter and apply properties
     // _from_ @react
-    this.state = Object.assign({}, this.settings, props);
+    this.state = Object.assign({}, this.settings);
 
     this.bridge = React.createRef();
     this.button = React.createRef();
@@ -53,7 +55,7 @@ class Home extends FabricComponent {
     const self = this;
 
     this.form.current.setState({ status: 'LOADING' });
-    this.button.current.setState({ status: 'LOADING '});
+    this.button.current.setState({ status: 'REQUESTING'});
 
     const address = this.form.current.state.address;
     const message = {
@@ -77,7 +79,7 @@ class Home extends FabricComponent {
   render () {
     return (
       <>
-        <fabric-bridge-home ref={this.ref}>
+        <fabric-faucet-home ref={this.ref}>
           <Visibility onBottomPassed={this._handleMastheadBottomPassed.bind(this)}>
             <Segment className='ui inverted vertical masthead center aligned segment'>
               <Container className='ui text container'>
@@ -89,16 +91,16 @@ class Home extends FabricComponent {
                       <FaucetDripForm ref={this.form} button={this.button} field={this.field} onSubmit={this.onSubmit.bind(this)} />
                     </Card.Content>
                   </Card>
-                  <Card fluid>
+                  <Card fluid style={(this.state.debug) ? {} : { display: 'none' }}>
                     <Card.Content>
-                      <FabricBridge ref={this.bridge} host={this.state.host} onChange={this._handleBridgeChange.bind(this)} state={this.state} />
+                      <FabricBridge ref={this.bridge} remoteReady={this._handleRemoteReady.bind(this)} secure={this.state.secure} host={this.state.host} port={this.state.port} debug={this.state.debug} state={this.state} />
                     </Card.Content>
                   </Card>
                 </Container>
               </Container>
             </Segment>
           </Visibility>
-        </fabric-bridge-home>
+        </fabric-faucet-home>
       </>
     );
   }
@@ -110,6 +112,11 @@ class Home extends FabricComponent {
   _handleMastheadBottomPassed (e, { calculations }) {
     console.log('vis change:', e, calculations);
     this.setState({ calculations });
+  }
+
+  async _handleRemoteReady () {
+    console.log('Remote ready!');
+    this.form.current.setState({ status: 'READY' });
   }
 }
 

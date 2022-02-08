@@ -25,8 +25,9 @@ class FabricBridge extends FabricComponent {
 
     this.settings = Object.assign({
       host: 'localhost',
-      port: 9999
-    }, props);
+      port: 9999,
+      secure: false
+    }, defaults, props);
 
     this.state = merge({
       integrity: 'sha256-deadbeefbabe',
@@ -37,7 +38,7 @@ class FabricBridge extends FabricComponent {
           count: 0
         }
       }
-    }, defaults, props);
+    }, this.settings);
 
     console.log('bridge settings:', this.settings);
 
@@ -126,19 +127,12 @@ class FabricBridge extends FabricComponent {
     );
   }
 
-  async _handleRemoteReady () {
-    this._syncState();
-    console.log('Remote ready!');
-    const balances = await this.executeMethod('btc_getbalances');
-    console.log('balances:', balances);
-  }
-
   async send (message) {
     return this.remote.send(message);
   }
 
   async start () {
-    this.remote.on('ready', this._handleRemoteReady.bind(this));
+    this.remote.on('ready', this.props.remoteReady.bind(this));
     this.remote.on('message', this._handleRemoteMessage.bind(this));
     this.remote.on('error', this._handleRemoteError.bind(this));
     this.connect();
