@@ -72,7 +72,7 @@ class Home extends FabricComponent {
     if (this.settings.debug) console.log('Message to send over bridge:', message);
     setTimeout(function () {
       self.bridge.current.send(message).then((result) => {
-        if (this.settings.debug) console.log('Message sent over bridge, result:', result);
+        if (self.settings.debug) console.log('Message sent over bridge, result:', result);
         self.field.current.value = '';
         self.field.current.setState({ address: '' });
         self.form.current.setState({ status: 'LOADED' });
