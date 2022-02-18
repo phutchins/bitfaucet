@@ -53,7 +53,7 @@ class FaucetDripForm extends FabricComponent {
     // i.e., use _state here, then import from getter and apply properties
     // _from_ @react
     this.state = merge({
-      address: null,
+      address: '',
       content: {
         requests: []
       },
@@ -100,6 +100,7 @@ class FaucetDripForm extends FabricComponent {
   _handleChange (e) {
     const fields = { ...this.state.fields, [e.target.name]: e.target.value };
     // TODO: merge old state
+    this._handleAddressChange(e);
     this.setState({ fields: fields });
   }
 
@@ -114,11 +115,11 @@ class FaucetDripForm extends FabricComponent {
           ref={this.props.form}
           loading={(this.state.status === 'LOADING' ? 'loading' : undefined)}
           disabled={(this.state.status === 'LOADING' ? 'disabled' : undefined)}
-          onSubmit={this.props.onSubmit.bind(this)} onChange={this.handleChange.bind(this)}>
+          onSubmit={this.props.onSubmit.bind(this)}>
           <Form.Field>
             <label>Request a deposit to&hellip;</label>
             <div className='ui input'>
-              <Input ref={this.props.field} action type='text' placeholder='Enter a Bitcoin address here' value={this.state.address} />
+              <Input ref={this.props.field} action type='text' placeholder='Enter a Bitcoin address here' value={this.state.address} onChange={this.handleChange.bind(this)} />
               <Button ref={this.props.button}
                 attached
                 type='submit'
