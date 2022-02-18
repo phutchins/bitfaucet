@@ -113,8 +113,8 @@ class FaucetDripForm extends FabricComponent {
       <>
         <Form
           ref={this.props.form}
-          loading={(this.state.status === 'LOADING' ? 'loading' : undefined)}
-          disabled={(this.state.status === 'LOADING' ? 'disabled' : undefined)}
+          loading={(this.state.status === 'LOADING')}
+          disabled={(this.state.status === 'LOADING')}
           onSubmit={this.props.onSubmit.bind(this)}>
           <Form.Field>
             <label>Request a deposit to&hellip;</label>
@@ -123,8 +123,8 @@ class FaucetDripForm extends FabricComponent {
               <Button ref={this.props.button}
                 attached
                 type='submit'
-                loading={(this.state.status === 'SUBMITTING') ? 'loading' : undefined}
-                disabled={(this.state.status === 'SUBMITTING') ? 'disabled' : undefined}
+                loading={(this.state.status === 'SUBMITTING')}
+                disabled={(this.state.status === 'SUBMITTING')}
                 color='green' content='Request' icon='right chevron' labelPosition='right' onClick={this.props.onSubmit.bind(this)} />
             </div>
             <FabricModal />
