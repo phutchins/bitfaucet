@@ -26,6 +26,7 @@
   "dependencies": {
     "@fabric/core": "martindale/fabric#faucet",
     "@fabric/http": "martindale/fabric-http#portal-develop",
+    "@reduxjs/toolkit": "^1.7.2",
     "bitcoinjs-lib": "^6.0.0",
     "lodash.merge": "^4.6.2"
   },
