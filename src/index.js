@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom';
 
 // Redux
 // import { createStore, applyMiddleware } from 'redux';
+import { store } from './app/store'
 import { Provider } from 'react-redux';
 // import createSagaMiddleware from 'redux-saga';
 
@@ -48,10 +49,9 @@ function reducer (state = initialState, action = { type: 'UNDEFINED_ACTION' }) {
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Provider store={store}> */}
-    {/* <Provider> */}
+    <Provider store={store}>
       <App state={state} host={state.host} />
-    {/* </Provider> */}
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
