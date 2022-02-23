@@ -2,10 +2,12 @@
 import * as defaults from './settings/state';
 
 // Dependencies
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import {
   Link
 } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { clearAddress, updateAddress } from './features/faucet/faucetSlice'
 
 // Components
 import {
@@ -28,11 +30,11 @@ import FaucetDripForm from './components/FaucetDripForm';
 // import FabricIdentityManager from './components/FabricIdentityManager';
 // import PortalMenu from './components/PortalMenu';
 
-class Home extends FabricComponent {
-  constructor (props) {
-    super(props);
-
-    this.settings = Object.assign({
+export default function Home (props) {
+  const address = useSelector((state) => state.faucet.address);
+  const [status, updateStatus] = useState(useSelector((state) => state.status));
+    const dispatch = useDispatch();
+    const settings = Object.assign({
       debug: false,
       host: 'localhost',
       port: 7222,
@@ -40,27 +42,35 @@ class Home extends FabricComponent {
       status: 'PAUSED'
     }, defaults, props);
 
+    const state = Object.assign(useSelector((state) => state), settings);
+
+    const bridge = useRef(null);
+    const button = React.createRef();
+    const field = React.createRef();
+    const form = React.createRef();
+    const modal = React.createRef();
+
+  function constructor (props) {
+    // super(props);
+
+
     // TODO: prepare Fabric
     // i.e., use _state here, then import from getter and apply properties
     // _from_ @react
-    this.state = Object.assign({}, this.settings);
+    // this.state = Object.assign({}, this.settings);
 
-    this.bridge = React.createRef();
-    this.button = React.createRef();
-    this.field = React.createRef();
-    this.form = React.createRef();
-    this.modal = React.createRef();
 
     return;
   }
 
-  onSubmit (e) {
-    const self = this;
+  const onSubmit = (e) => {
+    // const self = this;
 
-    this.form.current.setState({ status: 'LOADING' });
-    this.button.current.setState({ status: 'REQUESTING'});
+    updateStatus('LOADING');
+    updateStatus('REQUESTING');
+    // TODO: replace with form disable and loading class with a state enum variable
 
-    const address = this.form.current.state.address;
+    const address = updateAddress(e.target.value);
     const message = {
       type: 'Call',
       data: {
@@ -69,60 +79,54 @@ class Home extends FabricComponent {
       }
     };
 
-    if (this.settings.debug) console.log('Message to send over bridge:', message);
+    if (settings.debug) console.log('Message to send over bridge:', message);
     setTimeout(function () {
-      self.bridge.current.send(message).then((result) => {
-        if (self.settings.debug) console.log('Message sent over bridge, result:', result);
-        self.field.current.value = '';
-        self.field.current.setState({ address: '' });
-        self.form.current.setState({ status: 'LOADED' });
-        self.button.current.setState({ status: 'LOADED '});
+      bridge.current.send(message).then((result) => {
+        if (settings.debug) console.log('Message sent over bridge, result:', result);
+        updateStatus('LOADED');
+        // dispatch(clearAddress);
       });
     }, 1000);
   }
 
-  render () {
-    return (
-      <>
-        <fabric-faucet-home ref={this.ref}>
-          <Visibility onBottomPassed={this._handleMastheadBottomPassed.bind(this)}>
-            <Segment className='ui inverted vertical masthead center aligned segment'>
-              <Container className='ui text container'>
-                <h1 className='ui inverted header'><Icon name='tint' /> bitfaucet</h1>
-                <h2>The official <code>@fabric/playnet</code> faucet.</h2>
-                <Container className='left aligned' style={{ marginTop: '5em' }}>
-                  <Card fluid>
-                    <Card.Content>
-                      <FaucetDripForm ref={this.form} button={this.button} field={this.field} onSubmit={this.onSubmit.bind(this)} />
-                    </Card.Content>
-                  </Card>
-                  <Card fluid style={(this.state.debug) ? {} : { display: 'none' }}>
-                    <Card.Content>
-                      <FabricBridge ref={this.bridge} remoteReady={this._handleRemoteReady.bind(this)} secure={this.state.secure} host={this.state.host} port={this.state.port} debug={this.state.debug} state={this.state} />
-                    </Card.Content>
-                  </Card>
-                </Container>
-              </Container>
-            </Segment>
-          </Visibility>
-        </fabric-faucet-home>
-      </>
-    );
-  }
-
-  _handleBridgeChange (event) {
+  const _handleBridgeChange = (event) => {
     console.log('bridge change:', event);
-  }
+  };
 
-  _handleMastheadBottomPassed (e, { calculations }) {
+  const _handleMastheadBottomPassed = (e, { calculations }) => {
     console.log('vis change:', e, calculations);
     this.setState({ calculations });
-  }
+  };
 
-  async _handleRemoteReady () {
+  const _handleRemoteReady = async () => {
     console.log('Remote ready!');
-    this.form.current.setState({ status: 'READY' });
-  }
+  };
+
+  return (
+    <>
+      <fabric-faucet-home >
+        <Visibility onBottomPassed={_handleMastheadBottomPassed.bind(this)}>
+          <Segment className='ui inverted vertical masthead center aligned segment'>
+            <Container className='ui text container'>
+              <h1 className='ui inverted header'><Icon name='tint' /> bitfaucet</h1>
+              <h2>The official <code>@fabric/playnet</code> faucet.</h2>
+              <Container className='left aligned' style={{ marginTop: '5em' }}>
+                <Card fluid>
+                  <Card.Content>
+                    <FaucetDripForm field={field} onSubmit={onSubmit.bind(this)} />
+                  </Card.Content>
+                </Card>
+                <Card fluid style={(state.debug) ? {} : { display: 'none' }}>
+                  <Card.Content>
+                    <FabricBridge ref={bridge} remoteReady={_handleRemoteReady.bind(this)} secure={state.secure} host={state.host} port={state.port} debug={state.debug} state={state} />
+                  </Card.Content>
+                </Card>
+              </Container>
+            </Container>
+          </Segment>
+        </Visibility>
+      </fabric-faucet-home>
+    </>
+  );
 }
 
-export default Home;
