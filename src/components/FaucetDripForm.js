@@ -6,7 +6,7 @@ import * as bitcoin from 'bitcoinjs-lib';
 
 // React
 import merge from 'lodash.merge';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { clearAddress, updateAddress } from '../features/faucet/faucetSlice'
 // import FabricStateMapper from '../StateMapper';
@@ -38,9 +38,11 @@ import { render } from 'react-dom';
 
 
 export default function FaucetDripForm (props) {
-  const address = useSelector((state) => state.address);
+  const address = useSelector((state) => state.faucet.address);
+  const [inputAddress, setInputAddress] = useState(address);
   const dispatch = useDispatch();
-  const settings = merge({
+
+  const settings = Object.assign({
     network: 'regtest'
   }, props);
 
@@ -66,6 +68,10 @@ export default function FaucetDripForm (props) {
   
   // TODO: evaluate removing ZMQ
   // this.bitcoin = new Bitcoin(this.settings);
+
+  useEffect(() => {
+    setInputAddress(address);
+  }, [address]);
 
 
   const networks = () => {
@@ -105,7 +111,11 @@ export default function FaucetDripForm (props) {
   }
 
   const handleChange = (e) => {
-    dispatch(updateAddress(e.target.value || ''));
+    setInputAddress(e.target.value);
+
+    // TODO: add debounce
+    // TODO: add validateAddress
+    updateAddress(inputAddress || '');
   }
 
   const validateAddress = (address) => {
@@ -127,7 +137,7 @@ export default function FaucetDripForm (props) {
         <Form.Field>
           <label>Request a deposit to&hellip;</label>
           <div className='ui input'>
-            <Input ref={props.field} action type='text' placeholder='Enter a Bitcoin address here' value={address} onChange={handleChange.bind(this)} />
+            <Input ref={props.field} action type='text' placeholder='Enter a Bitcoin address here' value={inputAddress} onChange={(e) => handleChange(e)} />
             <Button
               attached
               type='submit'

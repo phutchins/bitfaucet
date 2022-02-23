@@ -7,7 +7,10 @@ import {
   Link
 } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearAddress, updateAddress } from './features/faucet/faucetSlice'
+import { 
+  clearAddress, 
+  updateAddress, 
+  updateStatus } from './features/faucet/faucetSlice'
 
 // Components
 import {
@@ -31,8 +34,8 @@ import FaucetDripForm from './components/FaucetDripForm';
 // import PortalMenu from './components/PortalMenu';
 
 export default function Home (props) {
-  const address = useSelector((state) => state.faucet.address);
-  const [status, updateStatus] = useState(useSelector((state) => state.status));
+    const address = useSelector((state) => state.faucet.address);
+    // const status = useSelector((state) => state.faucet.status);
     const dispatch = useDispatch();
     const settings = Object.assign({
       debug: false,
@@ -47,7 +50,7 @@ export default function Home (props) {
     const bridge = useRef(null);
     const button = React.createRef();
     const field = React.createRef();
-    const form = React.createRef();
+    const form = useRef(null);
     const modal = React.createRef();
 
   function constructor (props) {
@@ -70,7 +73,6 @@ export default function Home (props) {
     updateStatus('REQUESTING');
     // TODO: replace with form disable and loading class with a state enum variable
 
-    const address = updateAddress(e.target.value);
     const message = {
       type: 'Call',
       data: {
@@ -80,11 +82,14 @@ export default function Home (props) {
     };
 
     if (settings.debug) console.log('Message to send over bridge:', message);
+    console.log(`submitting address ${address}`)
     setTimeout(function () {
       bridge.current.send(message).then((result) => {
         if (settings.debug) console.log('Message sent over bridge, result:', result);
         updateStatus('LOADED');
-        // dispatch(clearAddress);
+        // TODO: clear address form.current.setInputAddress('');
+        clearAddress();
+        dispatch(clearAddress());
       });
     }, 1000);
   }
@@ -113,7 +118,7 @@ export default function Home (props) {
               <Container className='left aligned' style={{ marginTop: '5em' }}>
                 <Card fluid>
                   <Card.Content>
-                    <FaucetDripForm field={field} onSubmit={onSubmit.bind(this)} />
+                    <FaucetDripForm ref={form} field={field} onSubmit={onSubmit.bind(this)} />
                   </Card.Content>
                 </Card>
                 <Card fluid style={(state.debug) ? {} : { display: 'none' }}>
