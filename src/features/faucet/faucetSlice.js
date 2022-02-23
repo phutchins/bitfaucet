@@ -10,14 +10,14 @@ export const faucetSlice = createSlice({
     name: 'faucet',
     initialState,
     reducers: {
-        clearAddress: (state) => {
+        addressClear: (state) => {
             state.address = ''
         },
-        updateAddress: (state, action) => {
+        addressUpdate: (state, action) => {
             console.log(`payload ${action.payload}`)
             state.address = action.payload
         },
-        updateStatus: (state, action) => {
+        statusUpdate: (state, action) => {
             state.status = action.payload
         },
         setState: (state, action) => {
@@ -26,6 +26,6 @@ export const faucetSlice = createSlice({
     },
 })
 
-export const { clearAddress, updateAddress, updateStatus, setState } = faucetSlice.actions
+export const { addressClear, addressUpdate, statusUpdate, setState } = faucetSlice.actions
 
 export default faucetSlice.reducer

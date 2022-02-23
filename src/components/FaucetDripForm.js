@@ -8,7 +8,7 @@ import * as bitcoin from 'bitcoinjs-lib';
 import merge from 'lodash.merge';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { clearAddress, updateAddress } from '../features/faucet/faucetSlice'
+import { addressClear, addressUpdate } from '../features/faucet/faucetSlice'
 // import FabricStateMapper from '../StateMapper';
 
 // Fabric Types
@@ -115,7 +115,11 @@ export default function FaucetDripForm (props) {
 
     // TODO: add debounce
     // TODO: add validateAddress
-    updateAddress(inputAddress || '');
+    addressUpdate(inputAddress || '');
+  }
+
+  const handleSubmit = (e) => {
+    _handleSubmitButtonClick(e);
   }
 
   const validateAddress = (address) => {

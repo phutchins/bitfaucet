@@ -8,9 +8,9 @@ import {
 } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { 
-  clearAddress, 
-  updateAddress, 
-  updateStatus } from './features/faucet/faucetSlice'
+  addressClear, 
+  addressUpdate, 
+  statusUpdate } from './features/faucet/faucetSlice'
 
 // Components
 import {
@@ -69,8 +69,8 @@ export default function Home (props) {
   const onSubmit = (e) => {
     // const self = this;
 
-    updateStatus('LOADING');
-    updateStatus('REQUESTING');
+    statusUpdate('LOADING');
+    statusUpdate('REQUESTING');
     // TODO: replace with form disable and loading class with a state enum variable
 
     const message = {
@@ -84,13 +84,13 @@ export default function Home (props) {
     if (settings.debug) console.log('Message to send over bridge:', message);
     console.log(`submitting address ${address}`)
     setTimeout(function () {
-      bridge.current.send(message).then((result) => {
-        if (settings.debug) console.log('Message sent over bridge, result:', result);
-        updateStatus('LOADED');
-        // TODO: clear address form.current.setInputAddress('');
-        clearAddress();
-        dispatch(clearAddress());
-      });
+      // bridge.current.send(message).then((result) => {
+      //   if (settings.debug) console.log('Message sent over bridge, result:', result);
+      //   statusUpdate('LOADED');
+      //   // TODO: clear address form.current.setInputAddress('');
+      //   addressClear();
+        dispatch(addressClear());
+      // });
     }, 1000);
   }
 
