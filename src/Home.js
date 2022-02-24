@@ -89,7 +89,7 @@ export default function Home (props) {
       //   statusUpdate('LOADED');
       //   // TODO: clear address form.current.setInputAddress('');
       //   addressClear();
-        dispatch(addressClear());
+        addressClear();
       // });
     }, 1000);
   }
