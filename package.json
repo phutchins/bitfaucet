@@ -1,8 +1,12 @@
 {
   "name": "@fabric/faucet",
   "version": "0.2.0-dev",
-  "description": "bitcoin faucet",
+  "description": "playnet faucet",
   "main": "services/bitfaucet.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FabricLabs/faucet.git"
+  },
   "scripts": {
     "build": "npm run build:fomantic && npm run build:app",
     "build:app": "react-scripts build && cp -r build/* assets",
