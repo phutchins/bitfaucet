@@ -8,9 +8,10 @@ import {
 } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { 
-  addressClear, 
-  addressUpdate, 
-  statusUpdate } from './features/faucet/faucetSlice'
+  recipientAddressClear, 
+  recipientAddressUpdate, 
+  statusUpdate } from './features/faucet/faucetSlice';
+import { store } from './app/store';
 
 // Components
 import {
@@ -34,8 +35,8 @@ import FaucetDripForm from './components/FaucetDripForm';
 // import PortalMenu from './components/PortalMenu';
 
 export default function Home (props) {
-    const address = useSelector((state) => state.faucet.address);
-    // const status = useSelector((state) => state.faucet.status);
+    const address = useSelector((state) => state.recipient);
+    // const status = useSelector((state) => state.status);
     const dispatch = useDispatch();
     const settings = Object.assign({
       debug: false,
@@ -45,7 +46,7 @@ export default function Home (props) {
       status: 'PAUSED'
     }, defaults, props);
 
-    const state = Object.assign(useSelector((state) => state), settings);
+    const state = store.getState();
 
     const bridge = useRef(null);
     const button = React.createRef();
@@ -69,8 +70,10 @@ export default function Home (props) {
   const onSubmit = (e) => {
     // const self = this;
 
-    statusUpdate('LOADING');
-    statusUpdate('REQUESTING');
+    console.log("state object:");
+    console.log(store.getState());
+    store.dispatch({ type: 'faucet/statusUpdate' }, statusUpdate('LOADING'));
+    store.dispatch(statusUpdate('REQUESTING'));
     // TODO: replace with form disable and loading class with a state enum variable
 
     const message = {
@@ -84,12 +87,14 @@ export default function Home (props) {
     if (settings.debug) console.log('Message to send over bridge:', message);
     console.log(`submitting address ${address}`)
     setTimeout(function () {
+      if (address != '') {
+      }
       // bridge.current.send(message).then((result) => {
       //   if (settings.debug) console.log('Message sent over bridge, result:', result);
       //   statusUpdate('LOADED');
       //   // TODO: clear address form.current.setInputAddress('');
-      //   addressClear();
-        addressClear();
+      //   recipientAddressClear();
+      dispatch(recipientAddressUpdate(''));
       // });
     }, 1000);
   }

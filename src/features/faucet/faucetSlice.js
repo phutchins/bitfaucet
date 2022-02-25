@@ -6,13 +6,13 @@ export const faucetSlice = createSlice({
     name: 'faucet',
     initialState,
     reducers: {
-        addressClear: (state) => {
-            state.address = ''
+        recipientAddressClear: (state) => {
+            state.recipient = ''
         },
-        addressUpdate: (state, action) => {
+        recipientAddressUpdate: (state, action) => {
             const address = action.payload
             console.log(`payload ${address}`)
-            state.address = address
+            state.recipient = address
         },
         seedAdded: (state, action) => {
             const seed = action.payload
@@ -29,8 +29,8 @@ export const faucetSlice = createSlice({
 })
 
 export const { 
-    addressClear, 
-    addressUpdate, 
+    recipientAddressClear, 
+    recipientAddressUpdate, 
     statusUpdate, 
     setState 
 } = faucetSlice.actions

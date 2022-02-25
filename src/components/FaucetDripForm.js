@@ -9,12 +9,13 @@ import merge from 'lodash.merge';
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { 
-  addressClear, 
-  addressUpdate,
+  recipientAddressClear, 
+  recipientAddressUpdate,
   setState,
   statusUpdate,
 } from '../features/faucet/faucetSlice'
 // import FabricStateMapper from '../StateMapper';
+import { store } from '../app/store';
 
 // Fabric Types
 import FabricComponent from '../types/component';
@@ -43,7 +44,7 @@ import { render } from 'react-dom';
 
 
 export default function FaucetDripForm (props) {
-  const address = useSelector((state) => state.faucet.address);
+  const address = useSelector((state) => state.recipient);
   const [inputAddress, setInputAddress] = useState(address);
   const dispatch = useDispatch();
 
@@ -51,7 +52,7 @@ export default function FaucetDripForm (props) {
     network: 'regtest'
   }, props);
 
-  /* this.wallet = new Wallet({
+    /* this.wallet = new Wallet({
     network: this.settings.network
   }); */
 
@@ -74,9 +75,12 @@ export default function FaucetDripForm (props) {
   // TODO: evaluate removing ZMQ
   // this.bitcoin = new Bitcoin(this.settings);
 
-  useEffect(() => {
-    setInputAddress(address);
-  }, [address]);
+
+  // store.subscribe(() => { setInputAddress(address) });
+
+  // useEffect(() => {
+  //   setInputAddress(address);
+  // }, [address]);
 
 
   const networks = () => {
@@ -116,13 +120,15 @@ export default function FaucetDripForm (props) {
   }
 
   const handleChange = (e) => {
-    setInputAddress(e.target.value);
-
-    // TODO: add debounce
-    // TODO: add validateAddress
-    // if(inputAddress) {
-      addressUpdate(inputAddress);
-    // } else addressUpdate('');
+      setInputAddress(e.target.value);
+    // setTimeout(function () {
+  
+      // TODO: add debounce
+      // TODO: add validateAddress
+      if(inputAddress) {
+        dispatch(recipientAddressUpdate(inputAddress));
+      } else dispatch(recipientAddressUpdate(''));
+    // }, 1000);
   }
 
   const handleSubmit = (e) => {
