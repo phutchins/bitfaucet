@@ -1,10 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-const initialState = {
-    address: 'bcrt1qsxeu58zfe8apnyvrsm0fprrwc0gkmzx67ygaqa',
-    status: 'LOADING',
-    errors: [],
-}
+import * as initialState from '../../settings/state';
 
 export const faucetSlice = createSlice({
     name: 'faucet',
@@ -18,12 +14,16 @@ export const faucetSlice = createSlice({
             console.log(`payload ${address}`)
             state.address = address
         },
+        seedAdded: (state, action) => {
+            const seed = action.payload
+            state.seed = seed
+        },
         statusUpdate: (state, action) => {
             const status = action.payload
             state.status = status
         },
         setState: (state, action) => {
-            [...state] = [...action.payload]
+            Object.assign(state, action.payload)
         },
     },
 })

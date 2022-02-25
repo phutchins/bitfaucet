@@ -13,7 +13,6 @@ import { Provider } from 'react-redux';
 // import createSagaMiddleware from 'redux-saga';
 
 // Assets
-import * as state from './settings/state';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
@@ -27,20 +26,6 @@ import App from './App';
 // State
 import * as initialState from './settings/state';
 
-function reducer (state = initialState, action = { type: 'UNDEFINED_ACTION' }) {
-  switch (action.type) {
-    case 'SEED_ADDED':
-      return {
-        seed: state.seed
-      };
-    case 'RESET':
-      return {
-        status: 'RESET'
-      };
-    default:
-      return state;
-  }
-}
 
 // const sagas = createSagaMiddleware();
 // const store = createStore(reducer, applyMiddleware(sagas));
@@ -50,7 +35,7 @@ function reducer (state = initialState, action = { type: 'UNDEFINED_ACTION' }) {
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App state={state} host={state.host} />
+      <App state={initialState} host={initialState.host} />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
