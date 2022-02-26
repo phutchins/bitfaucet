@@ -35,7 +35,7 @@ import * as initialState from './settings/state';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App state={initialState} host={initialState.host} />
+      <App />
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

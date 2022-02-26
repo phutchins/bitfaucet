@@ -6,6 +6,7 @@ import * as merge from 'lodash.merge';
 import React from 'react';
 // import { Provider } from 'react-redux';
 // import { createStore } from 'redux';
+import { store } from './app/store'
 
 import {
   BrowserRouter as Router,
@@ -52,6 +53,7 @@ class App extends FabricComponent {
   constructor (settings) {
     super(settings);
 
+    const state = store.getState();
     this.settings = merge({}, state, settings);
 
     // this.fabric = new Fabric();
