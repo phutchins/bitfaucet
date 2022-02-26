@@ -55,7 +55,6 @@ export default function Home (props) {
 
   const onSubmit = (e) => {
     dispatch(statusUpdate('LOADING'));
-    dispatch(statusUpdate('REQUESTING'));
 
     // TODO: replace with form disable and loading class with a state enum variable
 
@@ -71,6 +70,7 @@ export default function Home (props) {
     console.log(`submitting address ${address}`)
     setTimeout(function () {
       if (address != '') {
+        dispatch(statusUpdate('REQUESTING'));
       }
 
       // Make a call through FabricBridge ref to execute tx 

@@ -141,8 +141,8 @@ export default function FaucetDripForm (props) {
     <>
       <Form
         ref={props.form}
-        loading={(state.status.value === 'LOADING')}
-        disabled={(state.status.value === 'LOADING')}
+        loading={(state.status === 'LOADING')}
+        disabled={(state.status === 'LOADING')}
         onSubmit={props.onSubmit.bind(this)}>
         <Form.Field>
           <label>Request a deposit to&hellip;</label>
@@ -151,8 +151,8 @@ export default function FaucetDripForm (props) {
             <Button
               attached
               type='submit'
-              loading={(state.status.value === 'SUBMITTING')}
-              disabled={(state.status.value === 'SUBMITTING')}
+              loading={(state.status === 'REQUESTING')}
+              disabled={(state.status === 'REQUESTING') || (state.status === 'PAUSED') || (state.status === 'ERROR')}
               color='green' content='Request' icon='right chevron' labelPosition='right' onClick={props.onSubmit.bind(this)} />
           </div>
           <FabricModal />
