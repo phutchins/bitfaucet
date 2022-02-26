@@ -36,7 +36,6 @@ import FaucetDripForm from './components/FaucetDripForm';
 
 export default function Home (props) {
     const address = useSelector((state) => state.recipient);
-    // const status = useSelector((state) => state.status);
     const dispatch = useDispatch();
     const settings = Object.assign({
       debug: false,
@@ -54,21 +53,7 @@ export default function Home (props) {
     const form = useRef(null);
     const modal = React.createRef();
 
-  function constructor (props) {
-    // super(props);
-
-
-    // TODO: prepare Fabric
-    // i.e., use _state here, then import from getter and apply properties
-    // _from_ @react
-    // this.state = Object.assign({}, this.settings);
-
-
-    return;
-  }
-
   const onSubmit = (e) => {
-    // const self = this;
     dispatch(statusUpdate('LOADING'));
     dispatch(statusUpdate('REQUESTING'));
 
@@ -87,12 +72,11 @@ export default function Home (props) {
     setTimeout(function () {
       if (address != '') {
       }
+
+      // Make a call through FabricBridge ref to execute tx 
       // bridge.current.send(message).then((result) => {
       //   if (settings.debug) console.log('Message sent over bridge, result:', result);
-      //   statusUpdate('LOADED');
-      //   // TODO: clear address form.current.setInputAddress('');
-      //   recipientAddressClear();
-      console.log(`clear address ${address}`)
+      dispatch(statusUpdate('LOADED'));
       dispatch(recipientAddressUpdate(''));
       // });
     }, 1000);

@@ -11,7 +11,7 @@ export const faucetSlice = createSlice({
         },
         recipientAddressUpdate: (state, action) => {
             const address = action.payload
-            console.log(`payload ${address}`)
+            // console.log(`recipientAddressUpdate action.payload ${address}`)
             state.recipient = address
         },
         seedAdded: (state, action) => {
