@@ -69,11 +69,9 @@ export default function Home (props) {
 
   const onSubmit = (e) => {
     // const self = this;
+    dispatch(statusUpdate('LOADING'));
+    dispatch(statusUpdate('REQUESTING'));
 
-    console.log("state object:");
-    console.log(store.getState());
-    store.dispatch({ type: 'faucet/statusUpdate' }, statusUpdate('LOADING'));
-    store.dispatch(statusUpdate('REQUESTING'));
     // TODO: replace with form disable and loading class with a state enum variable
 
     const message = {
