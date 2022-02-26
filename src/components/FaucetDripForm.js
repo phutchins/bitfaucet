@@ -75,13 +75,6 @@ export default function FaucetDripForm (props) {
   // this.bitcoin = new Bitcoin(this.settings);
 
 
-  // store.subscribe(() => { setInputAddress(address) });
-
-  // useEffect(() => {
-  //   if(address=='') setInputAddress(address);
-  // }, [address]);
-
-
   const networks = () => {
     return {
       'mainnet': bitcoin.networks.mainnet,

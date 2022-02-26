@@ -7,7 +7,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // Redux
-// import { createStore, applyMiddleware } from 'redux';
 import { store } from './app/store'
 import { Provider } from 'react-redux';
 // import createSagaMiddleware from 'redux-saga';
@@ -28,8 +27,6 @@ import * as initialState from './settings/state';
 
 
 // const sagas = createSagaMiddleware();
-// const store = createStore(reducer, applyMiddleware(sagas));
-
 // sagas.run(RPCRequest);
 
 ReactDOM.render(
