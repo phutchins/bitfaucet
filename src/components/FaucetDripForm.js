@@ -120,14 +120,15 @@ export default function FaucetDripForm (props) {
   }
 
   const handleChange = (e) => {
-      setInputAddress(e.target.value);
+      // setInputAddress(e.target.value);
     // setTimeout(function () {
   
       // TODO: add debounce
-      // TODO: add validateAddress
-      if(inputAddress) {
-        dispatch(recipientAddressUpdate(inputAddress));
-      } else dispatch(recipientAddressUpdate(''));
+      
+      // if(inputAddress) { // TODO: add validateAddress
+        dispatch(recipientAddressUpdate(e.target.value));
+      // } else dispatch(recipientAddressUpdate(''));
+      
     // }, 1000);
   }
 
