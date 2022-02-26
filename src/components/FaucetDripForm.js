@@ -44,8 +44,7 @@ import { render } from 'react-dom';
 
 
 export default function FaucetDripForm (props) {
-  const address = useSelector((state) => state.recipient);
-  const [inputAddress, setInputAddress] = useState(address);
+  const [inputAddress, setInputAddress] = useState(useSelector((state) => state.recipient));
   const dispatch = useDispatch();
 
   const settings = Object.assign({
@@ -63,7 +62,7 @@ export default function FaucetDripForm (props) {
   // i.e., use _state here, then import from getter and apply properties
   // _from_ @react
   const state = useSelector((state) => Object.assign({
-    address: address,
+    address: inputAddress,
     content: {
       requests: []
     },
@@ -79,7 +78,7 @@ export default function FaucetDripForm (props) {
   // store.subscribe(() => { setInputAddress(address) });
 
   // useEffect(() => {
-  //   setInputAddress(address);
+  //   if(address=='') setInputAddress(address);
   // }, [address]);
 
 
@@ -120,11 +119,11 @@ export default function FaucetDripForm (props) {
   }
 
   const handleChange = (e) => {
-      // setInputAddress(e.target.value);
+    // setInputAddress(e.target.value);
     // setTimeout(function () {
   
       // TODO: add debounce
-      
+
       // if(inputAddress) { // TODO: add validateAddress
         dispatch(recipientAddressUpdate(e.target.value));
       // } else dispatch(recipientAddressUpdate(''));
