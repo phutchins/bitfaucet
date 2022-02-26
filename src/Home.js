@@ -94,6 +94,7 @@ export default function Home (props) {
       //   statusUpdate('LOADED');
       //   // TODO: clear address form.current.setInputAddress('');
       //   recipientAddressClear();
+      console.log(`clear address ${address}`)
       dispatch(recipientAddressUpdate(''));
       // });
     }, 1000);
@@ -123,7 +124,7 @@ export default function Home (props) {
               <Container className='left aligned' style={{ marginTop: '5em' }}>
                 <Card fluid>
                   <Card.Content>
-                    <FaucetDripForm ref={form} field={field} onSubmit={onSubmit.bind(this)} />
+                    <FaucetDripForm field={field} onSubmit={onSubmit.bind(this)} />
                   </Card.Content>
                 </Card>
                 <Card fluid style={(state.debug) ? {} : { display: 'none' }}>
