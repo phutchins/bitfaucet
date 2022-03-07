@@ -68,6 +68,8 @@ class FaucetDripForm extends FabricComponent {
       status: 'LOADING'
     }, props.state);
 
+    this.inputAddress = props.state.recipient;
+
     // TODO: evaluate removing ZMQ
     // this.bitcoin = new Bitcoin(this.settings);
 

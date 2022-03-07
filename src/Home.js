@@ -3,6 +3,11 @@ import * as defaults from './settings/state';
 
 // Dependencies
 import React from 'react';
+import { connect } from 'react-redux';
+import { 
+  recipientAddressClear, 
+  recipientAddressUpdate, 
+  statusUpdate } from './features/faucet/faucetSlice';
 import {
   Link
 } from 'react-router-dom';
@@ -33,12 +38,12 @@ class Home extends FabricComponent {
     super(props);
 
     this.settings = Object.assign({
-      debug: false,
+      debug: true,
       host: 'localhost',
       port: 7222,
       secure: false,
       status: 'PAUSED'
-    }, defaults, props);
+    }, defaults, props.state);
 
     // TODO: prepare Fabric
     // i.e., use _state here, then import from getter and apply properties
@@ -54,13 +59,21 @@ class Home extends FabricComponent {
     return;
   }
 
+  clearInput () {
+    // this.field.reset();
+    console.log(`this.field.current.value ${this.field.current.value}`);
+    console.log(this.field);
+    this.field.current.value = 'hihi';
+  }
+
   onSubmit (e) {
     const self = this;
 
-    this.form.current.setState({ status: 'LOADING' });
-    this.button.current.setState({ status: 'REQUESTING'});
+    this.props.statusUpdate("LOADING");
+      // this.form.current.setState({ status: 'LOADING' });
+      // this.button.current.setState({ status: 'REQUESTING'});
 
-    const address = this.form.current.state.address;
+    const address = this.props.state.recipient;
     const message = {
       type: 'Call',
       data: {
@@ -69,15 +82,27 @@ class Home extends FabricComponent {
       }
     };
 
-    if (this.settings.debug) console.log('Message to send over bridge:', message);
+    if (this.settings.debug) {
+      console.log('Message to send over bridge:', message);
+      console.log(`submitting address ${address}`);
+    }
     setTimeout(function () {
-      self.bridge.current.send(message).then((result) => {
-        if (self.settings.debug) console.log('Message sent over bridge, result:', result);
+      if (address != '') {
+        self.props.statusUpdate('REQUESTING');
+      }
+
+      // self.bridge.current.send(message).then((result) => {
+        // if (self.settings.debug) console.log('Message sent over bridge, result:', result);
         self.field.current.value = '';
-        self.field.current.setState({ address: '' });
-        self.form.current.setState({ status: 'LOADED' });
-        self.button.current.setState({ status: 'LOADED '});
-      });
+        // self.clearInput();
+        // self.field.current.setState({ address: '' });
+
+        self.props.statusUpdate("LOADED");
+          // self.form.current.setState({ status: 'LOADED' });
+          // self.button.current.setState({ status: 'LOADED '});
+        
+        self.props.recipientAddressClear();
+      // });
     }, 1000);
   }
 
@@ -125,4 +150,13 @@ class Home extends FabricComponent {
   }
 }
 
-export default Home;
+
+const mapStateToProps = (state) => ({
+  state: state
+});
+
+const mapDispatchToProps = { recipientAddressClear, 
+                             recipientAddressUpdate,
+                             statusUpdate };
+
+export default connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true})(Home);
