@@ -125,7 +125,7 @@ class FaucetDripForm extends FabricComponent {
 
       // if(inputAddress) { // TODO: add validateAddress
         this.props.recipientAddressUpdate(e.target.value);
-      // } else dispatch(recipientAddressUpdate(''));
+      // } else this.props.recipientAddressUpdate('');
       
     // }, 1000);
   }
@@ -141,7 +141,7 @@ class FaucetDripForm extends FabricComponent {
           <Form.Field>
             <label>Request a deposit to&hellip;</label>
             <div className='ui input'>
-              <Input ref={this.props.field} action type='text' placeholder='Enter a Bitcoin address here' value={this.inputAddress} onChange={this.handleChange.bind(this)} />
+              <Input ref={this.props.field} action type='text' placeholder='Enter a Bitcoin address here' value={this.props.state.recipient || ''} onChange={this.handleChange.bind(this)} />
               <Button ref={this.props.button}
                 attached
                 type='submit'
@@ -181,7 +181,8 @@ class FaucetDripForm extends FabricComponent {
 
 
 const mapStateToProps = (state) => ({
-  state: state
+  state: state,
+  recipient: state.recipient
 });
 
 const mapDispatchToProps = { recipientAddressClear, 

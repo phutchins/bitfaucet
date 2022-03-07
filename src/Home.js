@@ -59,13 +59,6 @@ class Home extends FabricComponent {
     return;
   }
 
-  clearInput () {
-    // this.field.reset();
-    console.log(`this.field.current.value ${this.field.current.value}`);
-    console.log(this.field);
-    this.field.current.value = 'hihi';
-  }
-
   onSubmit (e) {
     const self = this;
 
@@ -94,14 +87,13 @@ class Home extends FabricComponent {
       // self.bridge.current.send(message).then((result) => {
         // if (self.settings.debug) console.log('Message sent over bridge, result:', result);
         self.field.current.value = '';
-        // self.clearInput();
+        self.props.recipientAddressClear();
         // self.field.current.setState({ address: '' });
 
         self.props.statusUpdate("LOADED");
           // self.form.current.setState({ status: 'LOADED' });
           // self.button.current.setState({ status: 'LOADED '});
         
-        self.props.recipientAddressClear();
       // });
     }, 1000);
   }
