@@ -38,7 +38,7 @@ class Home extends FabricComponent {
     super(props);
 
     this.settings = Object.assign({
-      debug: true,
+      debug: false,
       host: 'localhost',
       port: 7222,
       secure: false,
@@ -84,17 +84,17 @@ class Home extends FabricComponent {
         self.props.statusUpdate('REQUESTING');
       }
 
-      // self.bridge.current.send(message).then((result) => {
-        // if (self.settings.debug) console.log('Message sent over bridge, result:', result);
+      self.bridge.current.send(message).then((result) => {
+        if (self.settings.debug) console.log('Message sent over bridge, result:', result);
         self.field.current.value = '';
         self.props.recipientAddressClear();
-        // self.field.current.setState({ address: '' });
+          // self.field.current.setState({ address: '' });
 
         self.props.statusUpdate("LOADED");
           // self.form.current.setState({ status: 'LOADED' });
           // self.button.current.setState({ status: 'LOADED '});
         
-      // });
+      });
     }, 1000);
   }
 
