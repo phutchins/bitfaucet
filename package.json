@@ -1,8 +1,12 @@
 {
   "name": "@fabric/faucet",
   "version": "0.2.0-dev",
-  "description": "bitcoin faucet",
+  "description": "playnet faucet",
   "main": "services/bitfaucet.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FabricLabs/faucet.git"
+  },
   "scripts": {
     "build": "npm run build:fomantic && npm run build:app",
     "build:app": "react-scripts build && cp -r build/* assets",
@@ -24,8 +28,11 @@
   "author": "Eric Martindale",
   "license": "MIT",
   "dependencies": {
+    "@babel/core": "^7.17.5",
     "@fabric/core": "martindale/fabric#faucet",
     "@fabric/http": "martindale/fabric-http#portal-develop",
+    "@octokit/core": "^3.5.1",
+    "@reduxjs/toolkit": "^1.7.2",
     "bitcoinjs-lib": "^6.0.0",
     "lodash.merge": "^4.6.2"
   },

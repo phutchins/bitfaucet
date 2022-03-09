@@ -7,7 +7,13 @@ import * as bitcoin from 'bitcoinjs-lib';
 // React
 import merge from 'lodash.merge';
 import React from 'react';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import { 
+  recipientAddressClear, 
+  recipientAddressUpdate,
+  setState,
+  statusUpdate,
+} from '../features/faucet/faucetSlice'
 // import FabricStateMapper from '../StateMapper';
 
 // Fabric Types
@@ -38,9 +44,9 @@ class FaucetDripForm extends FabricComponent {
   constructor (props) {
     super(props);
 
-    this.settings = merge({
+    this.settings = Object.assign({
       network: 'regtest'
-    }, props);
+    }, props.state);
 
     /* this.wallet = new Wallet({
       network: this.settings.network
@@ -60,12 +66,20 @@ class FaucetDripForm extends FabricComponent {
       requests: {},
       secret: Actor.randomBytes(32), // solution hash (revealed on trade)
       status: 'LOADING'
-    }, props);
+    }, props.state);
+
+    this.inputAddress = props.state.recipient;
 
     // TODO: evaluate removing ZMQ
     // this.bitcoin = new Bitcoin(this.settings);
 
+
     return this;
+  }
+
+  componentDidMount() {
+    // set status to loaded
+    this.props.statusUpdate("LOADED");
   }
 
   get networks () {
@@ -98,13 +112,22 @@ class FaucetDripForm extends FabricComponent {
   }
 
   _handleChange (e) {
-    const fields = { ...this.state.fields, [e.target.name]: e.target.value };
+    // const fields = { ...this.state.fields, [e.target.name]: e.target.value };
     // TODO: merge old state
-    this.setState({ fields: fields });
+    // this.setState({ fields: fields });
   }
 
   handleChange (e) {
-    this.setState({ address: e.target.value });
+    // setInputAddress(e.target.value);
+    // setTimeout(function () {
+  
+      // TODO: add debounce
+
+      // if(inputAddress) { // TODO: add validateAddress
+        this.props.recipientAddressUpdate(e.target.value);
+      // } else this.props.recipientAddressUpdate('');
+      
+    // }, 1000);
   }
 
   render () {
@@ -112,18 +135,18 @@ class FaucetDripForm extends FabricComponent {
       <>
         <Form
           ref={this.props.form}
-          loading={(this.state.status === 'LOADING' ? 'loading' : undefined)}
-          disabled={(this.state.status === 'LOADING' ? 'disabled' : undefined)}
-          onSubmit={this.props.onSubmit.bind(this)} onChange={this.handleChange.bind(this)}>
+          loading={(this.props.state.status === 'LOADING')}
+          disabled={(this.props.state.status === 'LOADING')}
+          onSubmit={this.props.onSubmit.bind(this)}>
           <Form.Field>
             <label>Request a deposit to&hellip;</label>
             <div className='ui input'>
-              <Input ref={this.props.field} action type='text' placeholder='Enter a Bitcoin address here' value={this.state.address} />
+              <Input ref={this.props.field} action type='text' placeholder='Enter a Bitcoin address here' value={this.props.state.recipient || ''} onChange={this.handleChange.bind(this)} />
               <Button ref={this.props.button}
                 attached
                 type='submit'
-                loading={(this.state.status === 'SUBMITTING') ? 'loading' : undefined}
-                disabled={(this.state.status === 'SUBMITTING') ? 'disabled' : undefined}
+                loading={(this.props.state.status === 'LOADING')}
+                disabled={(this.props.state.status === 'REQUESTING') || (this.props.state.status === 'PAUSED') || (this.props.state.status === 'ERROR')}
                 color='green' content='Request' icon='right chevron' labelPosition='right' onClick={this.props.onSubmit.bind(this)} />
             </div>
             <FabricModal />
@@ -156,5 +179,16 @@ class FaucetDripForm extends FabricComponent {
   }
 }
 
+
+const mapStateToProps = (state) => ({
+  state: state,
+  recipient: state.recipient
+});
+
+const mapDispatchToProps = { recipientAddressClear, 
+                             recipientAddressUpdate,
+                             setState,
+                             statusUpdate };
+
 // export default PortalOrderForm;
-export default FaucetDripForm;
+export default connect(mapStateToProps, mapDispatchToProps, null, { forwardRef: true})(FaucetDripForm);
