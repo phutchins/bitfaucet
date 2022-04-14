@@ -1,32 +1,37 @@
-extends layout
+extends layouts/default
 
 block content
- div.page-header
-  h1 Welcome to BitFaucet!
-  p
-   lead We provide bitcoin from  #{net_name}  for testing purposes.
- h3 Wallet Balance:&nbsp
-  = balance
- if message
-  p.bg-success.greybox= message
- else
-  p Enter your TestNet wallet address and click 'Get Bit' to get some bitcoin
- div.jumbotron
-  form(method="POST", action="/")
-   input(type="hidden", name="_method", value="POST")
-   p.lead Wallet Address&nbsp
-    input.form-control(type="text", name="wallet_address")
-   p.lead Amount&nbsp
-    input.form-control(type="number", step="any", name="pour_amount", max="#{bit_limit}", min="0")
-    h6 (You can withdrawl up to #{bit_limit}btc per request)
-   p
-    button.btn.btn-large.btn-success(type="submit") Get Bit
-   p
- hr
- p To give back to the faucet, please send your coins to the following address
- //-img(src='/images/wallet_qr.svg')
- p.bg-info.greybox= faucet_address
- hr
- .footer
-  p Philip Hutchins 2014
-  script(src="/javascripts/lib/bootstrap/bootstrap.min.js ")
+  .ui.header
+    h1 Welcome to BitFaucet!
+    h3 We provide bitcoin from testnet for testing purposes.
+    p &nbsp;
+    
+    center
+      h2(data-bind="faucet.balance") #{ faucets[0].balance }
+        i.icon.bitcoin
+        | available
+
+  form.ui.form.large(action="/pours", method="post")
+    .fields
+      .three.wide.field
+        label Network
+        //- NOTE: for this to be styled Semantic 1.0.0 needs to be used.
+        //- currently, we're using the beta, so it appears unstyled, but is
+        //- semantically correct.
+        select.ui.dropdown(name="_faucet")
+          each faucet in faucets
+            option(value="#{faucet._id}") #{faucet.name}
+      .two.wide.field
+        label Amount
+        input(type="number", name="amount", step="any", max="5", min="0", value="1", required)
+      .six.wide.field
+        label Address
+        input(type="text", name="address", length="35", placeholder="i.e., miWQvs1rZFgBjXsP7nfyYA7tBvG6dHgV9d", required)
+      .field
+        label &nbsp;
+        button.ui.blue.submit.button(type="submit") Get Bits &raquo;
+
+  .ui.grid
+    .row.two
+    .row.two
+    .row.two

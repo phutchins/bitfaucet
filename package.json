@@ -1,25 +1,62 @@
 {
-  "name": "bitfaucet",
-  "version": "0.0.0",
-  "private": true,
-  "scripts": {
-    "start": "node ./bin/www"
+  "name": "@fabric/faucet",
+  "version": "0.2.0-dev",
+  "description": "playnet faucet",
+  "main": "services/bitfaucet.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FabricLabs/faucet.git"
   },
+  "scripts": {
+    "build": "npm run build:fomantic && npm run build:app",
+    "build:app": "react-scripts build && cp -r build/* assets",
+    "build:fomantic": "cd libraries/semantic && gulp build && cd ../../",
+    "debug": "react-scripts start",
+    "eject": "react-scripts eject",
+    "start": "node scripts/node.js",
+    "test": "mocha tests"
+  },
+  "keywords": [
+    "bitcoin",
+    "maki",
+    "fabric",
+    "faucet",
+    "bitfaucet",
+    "example",
+    "money"
+  ],
+  "author": "Eric Martindale",
+  "license": "MIT",
   "dependencies": {
-    "bitcoin": "^2.2.0",
-    "body-parser": "~1.6.6",
-    "bootstrap": "~3.2.0",
-    "bson": "^0.2.15",
-    "cookie-parser": "~1.3.2",
-    "debug": "~1.0.4",
-    "express": "~4.8.6",
-    "jade": "~1.5.0",
-    "less": "1.3.3",
-    "less-middleware": "~1.0.4",
-    "mongoose": "3.8.15",
-    "morgan": "~1.2.3",
-    "serve-favicon": "~2.0.1",
-    "qr-image": "~2.0.0",
-    "bootswatch": "~3.2.0"
+    "@babel/core": "^7.17.5",
+    "@fabric/core": "martindale/fabric#faucet",
+    "@fabric/http": "martindale/fabric-http#portal-develop",
+    "@octokit/core": "^3.5.1",
+    "@reduxjs/toolkit": "^1.7.2",
+    "bitcoinjs-lib": "^6.0.0",
+    "lodash.merge": "^4.6.2"
+  },
+  "devDependencies": {
+    "fomantic-ui": "^2.8.8",
+    "fomantic-ui-css": "^2.8.8",
+    "mocha": "^9.2.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^6.0.1",
+    "react-scripts": "4.0.3",
+    "semantic-ui-react": "^2.0.4"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
